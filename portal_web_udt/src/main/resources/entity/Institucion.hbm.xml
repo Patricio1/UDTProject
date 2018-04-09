@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/12/2017 21:55:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="uta.gad.udt.models.entity.Institucion" table="INSTITUCION" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="120" not-null="true" unique="true" />
+        </property>
+        <property name="abreviatura" type="string">
+            <column name="ABREVIATURA" length="20" unique="true" />
+        </property>
+        <property name="slogan" type="string">
+            <column name="SLOGAN" length="250" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="150" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="80" not-null="true" />
+        </property>
+        <property name="correoAdmin" type="string">
+            <column name="CORREO_ADMIN" length="110" not-null="true" />
+        </property>
+        <property name="horarioAtencion" type="string">
+            <column name="HORARIO_ATENCION" length="110" not-null="true" />
+        </property>
+        <property name="logo" type="string">
+            <column name="LOGO" length="150" />
+        </property>
+        <property name="mision" type="string">
+            <column name="MISION" length="950" />
+        </property>
+        <property name="vision" type="string">
+            <column name="VISION" length="950" />
+        </property>
+        <property name="valores" type="string">
+            <column name="VALORES" />
+        </property>
+        <property name="acercaDe" type="string">
+            <column name="ACERCA_DE" />
+        </property>
+        <property name="lat" type="big_decimal">
+            <column name="LAT" precision="9" scale="6" />
+        </property>
+        <property name="lon" type="big_decimal">
+            <column name="LON" precision="9" scale="6" />
+        </property>
+    </class>
+   <sql-query name="getInfoInstitucion" >                       
+   <return-scalar  column="nombre" type="java.lang.String"/>
+	 <return-scalar  column="direccion" type="java.lang.String" />
+	 <return-scalar  column="telefono" type="java.lang.String" />
+	 <return-scalar  column="logo" type="java.lang.String" />	
+	 <return-scalar  column="abreviatura" type="java.lang.String" />
+	<![CDATA[EXEC portal.GET_INFO_INSTITUCION]]>
+    </sql-query>
+    <sql-query name="getInstitucion">
+	<return alias="institucion" class="uta.gad.udt.models.entity.Institucion"/>
+	<![CDATA[EXEC portal.GET_INSTITUCION]]>
+    </sql-query>  
+</hibernate-mapping>

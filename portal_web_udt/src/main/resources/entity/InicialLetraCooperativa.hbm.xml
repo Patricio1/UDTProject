@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/11/2017 21:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>          
+    <sql-query name="listarLetraInicialCooperativa" >                       
+   <return-scalar  column="letra" type="java.lang.String"/>
+	<![CDATA[EXEC portal.LISTAR_LETRA_INICIAL_COOPERATIVA]]>
+    </sql-query>
+</hibernate-mapping>

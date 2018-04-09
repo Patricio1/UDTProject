@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/12/2017 11:46:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="uta.gad.udt.models.entity.ComunicadoNoticia" table="COMUNICADO_NOTICIA" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="titulo" type="string">
+            <column name="TITULO" length="90" not-null="true" unique="true" />
+        </property>
+        <property name="contenido" type="string">
+            <column name="CONTENIDO" not-null="true" />
+        </property>
+        <property name="tipo" type="char">
+            <column name="TIPO" length="1" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="10" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="ESTADO" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="IMAGEN" length="100" />
+        </property>
+    </class>
+    <sql-query name="listarComunicadoNoticia">
+	<return class="uta.gad.udt.models.entity.ComunicadoNoticia"/>
+	<![CDATA[EXEC portal.GET_COMUNICADO_NOTICIA]]>
+    </sql-query> 
+    <sql-query name="listarComunicados" >
+    <return-scalar  column="id" type="java.lang.Integer"/>                
+    <return-scalar  column="titulo" type="java.lang.String"/>
+	<return-scalar  column="fecha" type="date" />	 
+	<![CDATA[EXEC portal.LISTAR_COMUNICADOS]]>
+    </sql-query>
+    <sql-query name="getComunicadoNoticiaPorId" >                       
+    <return-scalar  column="titulo" type="java.lang.String"/>
+    <return-scalar  column="contenido" type="java.lang.String"/>    
+	<return-scalar  column="fecha" type="date" />
+	<return-scalar  column="imagen" type="java.lang.String"/>	 
+	<![CDATA[EXEC portal.GET_COMUNICADO_NOTICIA_POR_ID :TIPO,:ID]]>
+    </sql-query>
+    <sql-query name="getUltimas4Noticias" >                       
+    <return-scalar  column="id" type="java.lang.Integer"/> 
+    <return-scalar  column="titulo" type="java.lang.String"/>   
+	<![CDATA[EXEC portal.GET_ULTIMAS4_NOTICIAS]]>
+    </sql-query>
+     <sql-query name="getTitularesNoticias" >                       
+    <return-scalar  column="id" type="java.lang.Integer"/> 
+    <return-scalar  column="titulo" type="java.lang.String"/>
+    <return-scalar  column="contenido" type="java.lang.String"/> 
+    <return-scalar  column="imagen" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_TITULARES_NOTICIAS]]>
+    </sql-query>
+    <sql-query name="getNoticiaPrincipal" >                       
+    <return-scalar  column="id" type="java.lang.Integer"/> 
+    <return-scalar  column="titulo" type="java.lang.String"/>
+    <return-scalar  column="contenido" type="java.lang.String"/>
+    <return-scalar  column="_fecha" type="java.lang.String"/> 
+    <return-scalar  column="imagen" type="java.lang.String"/>   
+	<![CDATA[EXEC  portal.GET_NOTICIA_PRINCIPAL]]>
+    </sql-query>
+</hibernate-mapping>

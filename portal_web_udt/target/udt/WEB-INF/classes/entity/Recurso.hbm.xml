@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/11/2017 21:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping> 
+ <class name="uta.gad.udt.models.entity.Recurso" table="RECURSO" catalog="SICTERT" schema="portal">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="100" />
+        </property>
+        <property name="url" type="string">
+            <column name="URL" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="TIPO" length="1" />
+        </property>
+    </class>
+    <sql-query name="listarRecursos">
+	<return alias="listarRecursos" class="uta.gad.udt.models.entity.Recurso"/>
+	<![CDATA[EXEC portal.LISTAR_RECURSOS]]>
+    </sql-query>     
+    <sql-query name="getrecurso" >                       
+<return-scalar  column="url" type="java.lang.String"/>
+<return-scalar column="descripcion" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_RECURSO_POR_NOMBRE :NOMBRE]]>
+    </sql-query>
+     <sql-query name="getSlides" >                       
+<return-scalar  column="url" type="java.lang.String"/>
+<return-scalar column="descripcion" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_SLIDES]]>
+    </sql-query>
+</hibernate-mapping>

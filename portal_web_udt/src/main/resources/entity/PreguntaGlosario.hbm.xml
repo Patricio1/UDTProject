@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/12/2017 11:07:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="uta.gad.udt.models.entity.PreguntaGlosario" table="PREGUNTA_GLOSARIO" catalog="SICTERT" schema="portal">
+        <id name="id" type="short">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION"/>
+        </property>
+        <property name="tipo" type="string">
+            <column name="TIPO" length="1" />
+        </property>
+    </class>
+    <sql-query name="listarPreguntaGlosario">
+	<return-scalar  column="nombre" type="java.lang.String"/>
+	<return-scalar column="descripcion" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_PREGUNTA_GLOSARIO :TIPO]]>
+    </sql-query> 
+</hibernate-mapping>

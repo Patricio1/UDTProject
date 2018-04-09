@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/11/2017 21:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>          
+    <sql-query name="detalleCooperativa" >                       
+<return-scalar  column="cooperativa" type="java.lang.String"/>
+<return-scalar  column="inicial" type="java.lang.String"/>		
+<return-scalar column="cubiculo" type="java.lang.Long"/>	
+<return-scalar column="telefono" type="java.lang.String"/>
+<return-scalar column="horario" type="java.lang.String"/>
+<return-scalar column="logo" type="java.lang.String"/>
+<return-scalar column="website" type="java.lang.String"/>
+	<![CDATA[EXEC portal.P_GET_DIRECTORIO_COOPERATIVA]]>
+    </sql-query>
+    <sql-query name="cooperativasTrabajanTerminal" >                       
+<return-scalar  column="cooperativa" type="java.lang.String"/>
+<return-scalar column="logo" type="java.lang.String"/>
+<return-scalar column="website" type="java.lang.String"/>
+	<![CDATA[EXEC portal.P_GET_COOPERATIVAS_TRABAJAN_CON_NOSOTROS]]>
+    </sql-query>
+</hibernate-mapping>

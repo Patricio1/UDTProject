@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/12/2017 10:53:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="uta.gad.udt.models.entity.AreaTransferencia" table="AREA_TRANSFERENCIA" optimistic-lock="version" catalog="SICTERT" schema="portal">
+        <id name="idArea" type="byte">
+            <column name="ID_AREA" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="150" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="100" />
+        </property>
+        <property name="img" type="string">
+            <column name="IMG" />
+        </property>
+        <property name="tipoTransp" type="string">
+            <column name="TIPO_TRANSP" length="150" />
+        </property>
+    </class>
+    <sql-query name="listarAreaTransferencia">
+	<return alias="listarAreaTransferencia" class="uta.gad.udt.models.entity.AreaTransferencia"/>
+	<![CDATA[EXEC portal.GET_AREA_TRANSFERENCIA_POR_NOMBRE :NOMBRE]]>
+    </sql-query>
+    <sql-query name="getNombresAreaTransferencia" >                       
+	   <return-scalar  column="nombre" type="java.lang.String"/>		
+		<![CDATA[EXEC portal.GET_NOMBRES_AREA_TRANSFERENCIA]]>
+    </sql-query>   
+</hibernate-mapping>

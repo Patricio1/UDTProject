@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/11/2017 21:39:29 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>          
+    <sql-query name="listarMultasPorPlaca" >                       
+   <return-scalar  column="fecha" type="java.lang.String"/>
+	 <return-scalar  column="detalle" type="java.lang.String" />
+	 <return-scalar  column="valor" type="java.lang.Float" />	
+	<![CDATA[EXEC portal.GET_MULTA_BY_PLACA :PLACA_UNIDAD]]>
+    </sql-query>
+</hibernate-mapping>

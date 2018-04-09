@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/12/2017 11:07:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="uta.gad.udt.models.entity.Servicio" table="SERVICIO" catalog="SICTERT" schema="portal">
+        <id name="idServicio" type="short">
+            <column name="ID_SERVICIO" />
+            <generator class="native" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="90" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="500" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="IMAGEN" length="100" />
+        </property>
+    </class>
+    <sql-query name="listarServicios">
+	<return alias="listarServicios" class="uta.gad.udt.models.entity.Servicio"/>
+	<![CDATA[EXEC portal.sp_SelectServicios]]>
+    </sql-query> 
+    <sql-query name="getServicios" >                       
+    <return-scalar  column="nombre" type="java.lang.String"/> 
+    <return-scalar  column="descripcion" type="java.lang.String"/>
+    <return-scalar  column="imagen" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_SERVICIOS]]>
+    </sql-query>
+</hibernate-mapping>

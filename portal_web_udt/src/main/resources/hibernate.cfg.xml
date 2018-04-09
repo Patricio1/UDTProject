@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="SessionFactoryPersistencia">
+  <property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+  <property name="hibernate.connection.password">${password}</property>
+  <property name="hibernate.connection.url">jdbc:jtds:sqlserver://127.0.0.1:1433/SICTERT;instance=patricio-Inspir</property>
+  <property name="hibernate.connection.username">${username}</property>
+  <property name="hibernate.default_catalog">SICTERT</property>
+  <property name="hibernate.default_schema">portal</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+  <mapping resource="entity/Link.hbm.xml"/> 
+  <mapping resource="entity/Servicio.hbm.xml"/>
+  <mapping resource="entity/ProximaSalidaCooperativa.hbm.xml"/>
+  <mapping resource="entity/CooperativasConProximasSalidas.hbm.xml"/>
+  <mapping resource="entity/DestinosConProximasSalidas.hbm.xml"/>
+  <mapping resource="entity/DetalleProximasSalidasPorDestino.hbm.xml"/>
+  <mapping resource="entity/DestinosFrecuencias.hbm.xml"/>
+  <mapping resource="entity/CooperativasFrecuenciasPorDestino.hbm.xml"/>
+  <mapping resource="entity/HorarioCooperativasPorDestino.hbm.xml"/>
+  <mapping resource="entity/MultasPorPlacaUnidadT.hbm.xml"/>
+  <mapping resource="entity/DestinosCoopIntercantonal.hbm.xml"/>
+  <mapping resource="entity/AreaTransferencia.hbm.xml"/>
+  <mapping resource="entity/Institucion.hbm.xml"/>
+  <mapping resource="entity/ComunicadoNoticia.hbm.xml"/>
+  <mapping resource="entity/InicialLetraCooperativa.hbm.xml"/>
+  <mapping resource="entity/DetalleCooperativa.hbm.xml"/>
+  <mapping resource="entity/Recurso.hbm.xml"/>
+  <mapping resource="entity/PreguntaGlosario.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

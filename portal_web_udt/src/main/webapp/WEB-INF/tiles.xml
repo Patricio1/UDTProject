@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+ 	<!-- La definición principal del layout o root -->
+	<definition name="definicion.principal" template="/WEB-INF/tiles/publico/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="cabecera" value="/WEB-INF/tiles/publico/cabecera.jsp" />
+		<put-attribute name="cuerpo" value="" />
+		<put-attribute name="noticias" value="/WEB-INF/tiles/publico/seccion_noticias.jsp" />
+		<put-attribute name="pie" value="/WEB-INF/tiles/publico/pie.jsp" />
+	</definition>
+
+
+	<definition name="inicio" extends="definicion.principal">
+		<put-attribute name="title" value="Inicio" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/inicio.jsp" />
+	</definition>
+	<definition name="plan-estrategico" extends="definicion.principal">
+		<put-attribute name="title" value="Planificación Estratégica" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/plan-estrategico.jsp" />
+	</definition>
+	<definition name="directorio" extends="definicion.principal">
+		<put-attribute name="title" value="Directorio" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/directorio.jsp" />
+	</definition>
+	<definition name="organigrama" extends="definicion.principal">
+		<put-attribute name="title" value="Organigrama" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/organigrama.jsp" />
+	</definition>
+	<definition name="acercade" extends="definicion.principal">
+		<put-attribute name="title" value="Acerca de la UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/acercade.jsp" />
+	</definition>
+	<definition name="contacto" extends="definicion.principal">
+		<put-attribute name="title" value="Contáctase con la UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/contacto.jsp" />
+	</definition>
+	<definition name="como-llegar" extends="definicion.principal">
+		<put-attribute name="title" value="Como llegar a la UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/como-llegar.jsp" />
+	</definition>
+	<definition name="areat-america" extends="definicion.principal">
+		<put-attribute name="title" value="Área de transferencia América" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/areat-america.jsp" />
+	</definition>
+	<definition name="areat-cashapamba" extends="definicion.principal">
+		<put-attribute name="title" value="Área de transferencia Cashapamba" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/areat-cashapamba.jsp" />
+	</definition>
+	
+	<definition name="servicios" extends="definicion.principal">
+		<put-attribute name="title" value="Servicios a la ciudadanía" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/servicios.jsp" />
+	</definition>
+	<definition name="preguntas-frecuentes" extends="definicion.principal">
+		<put-attribute name="title" value="Preguntas frecuentes" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/preguntas-frecuentes.jsp" />
+	</definition>
+	<definition name="glosario" extends="definicion.principal">
+		<put-attribute name="title" value="Glosario de términos" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/glosario.jsp" />
+	</definition>
+	<definition name="directorio-cooperativas" extends="definicion.principal">
+		<put-attribute name="title" value="Directorio de cooperativas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/directorio-cooperativas.jsp" />
+	</definition>
+	<definition name="rutas" extends="definicion.principal">
+		<put-attribute name="title" value="Rutas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/rutas.jsp" />
+	</definition>
+	<definition name="cooperativas" extends="definicion.principal">
+		<put-attribute name="title" value="Cooperativas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/cooperativas.jsp" />
+	</definition>
+	<definition name="proximas-salidas" extends="definicion.principal">
+		<put-attribute name="title" value="Próximas salidas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/proximas-salidas-por-cooperativa.jsp" />
+	</definition>
+	
+	<definition name="tramites" extends="definicion.principal">
+		<put-attribute name="title" value="Trámites transportistas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_transportista/tramites.jsp" />
+	</definition>
+	<definition name="consulta-multas" extends="definicion.principal">
+		<put-attribute name="title" value="Consulta de multas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_transportista/consulta-multas.jsp" />
+	</definition>
+	<definition name="comunicado" extends="definicion.principal">
+		<put-attribute name="title" value="Comunicado" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/comunicado.jsp" />
+	</definition>
+	<definition name="noticia" extends="definicion.principal">
+		<put-attribute name="title" value="Noticia" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/noticia.jsp" />
+	</definition>
+	
+	<!-- La definición principal del layout para la parte administrativa-->
+	<definition name="definicion.admin" template="/WEB-INF/tiles/admin/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="cabecera" value="/WEB-INF/tiles/admin/cabecera.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/tiles/admin/menu.jsp" />
+		<put-attribute name="cuerpo" value="" />	
+		<put-attribute name="pie" value="/WEB-INF/tiles/admin/pie.jsp" />
+	</definition>
+
+
+	<definition name="admin" extends="definicion.admin">
+		<put-attribute name="title" value="Panel de Administración | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/inicio.jsp" />
+	</definition>
+	<definition name="institucion" extends="definicion.admin">
+		<put-attribute name="title" value="Institución | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/institucion.jsp" />
+	</definition>
+	<definition name="servicio" extends="definicion.admin">
+		<put-attribute name="title" value="Servicios | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/servicio.jsp" />
+	</definition>
+	<definition name="listado-servicios" extends="definicion.admin">
+		<put-attribute name="title" value="Listado Servicios | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoServicios.jsp" />
+	</definition>
+	<definition name="form-servicio" extends="definicion.admin">
+		<put-attribute name="title" value="Form Servicio | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formServicio.jsp" />
+	</definition>
+	<definition name="listado-comunicado-noticia" extends="definicion.admin">
+		<put-attribute name="title" value="Listado Comunicado/Noticia | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoComunicadoNoticia.jsp" />
+	</definition>
+	<definition name="form-comunicadoNoticia" extends="definicion.admin">
+		<put-attribute name="title" value="Form Comunicado/Noticia | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formComunicadoNoticia.jsp" />
+	</definition>
+	
+	<definition name="listado-recursos" extends="definicion.admin">
+		<put-attribute name="title" value="Listado Recursos" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoRecursos.jsp" />
+	</definition>
+	<definition name="form-recurso" extends="definicion.admin">
+		<put-attribute name="title" value="Form Recursos" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formRecurso.jsp" />
+	</definition>
+</tiles-definitions>
