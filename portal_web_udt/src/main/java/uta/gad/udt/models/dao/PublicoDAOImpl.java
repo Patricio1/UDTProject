@@ -1,5 +1,6 @@
 package uta.gad.udt.models.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,11 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+
+
+
+
+
 
 import uta.gad.udt.models.entity.AgruparHorario;
 import uta.gad.udt.models.entity.AreaTransferencia;
@@ -27,10 +33,13 @@ import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.LetraInicialCooperativa;
 import uta.gad.udt.models.entity.Link;
 import uta.gad.udt.models.entity.MultasPorPlacaUnidadT;
+import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.PreguntaGlosario;
 import uta.gad.udt.models.entity.ProximaSalidaCooperativa;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
+import uta.gad.udt.models.entity.TarifaTransporte;
+import uta.gad.udt.models.entity.TramiteTransportista;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -198,10 +207,55 @@ public class PublicoDAOImpl implements PublicoDAO{
             return institucion;                                            	       	              
       	}
     @SuppressWarnings("unchecked")
+    @Override
+    public Institucion getPlanificacionEstrategica()
+    {
+    	 Session session = HibernateUtil.getSessionFactory().openSession();         
+         List<Institucion> result = session.getNamedQuery("getPlanificacionEstrategica").setResultTransformer(Transformers.aliasToBean(Institucion.class)).list();            
+         Institucion institucion=null;
+         try
+     	{
+         	institucion = result.get(0);
+     	}catch(java.lang.IndexOutOfBoundsException ex)
+     	{
+     		institucion = null;
+     	}           
+         session.close();
+         return institucion;
+    }
+    @SuppressWarnings("unchecked")
+    @Override
+    public Institucion getCoordenadasInstalacionesInstitucion()
+    {
+    	 Session session = HibernateUtil.getSessionFactory().openSession();         
+         List<Institucion> result = session.getNamedQuery("getCoordenadas").setResultTransformer(Transformers.aliasToBean(Institucion.class)).list();            
+         Institucion institucion=null;
+         try
+     	{
+         	institucion = result.get(0);
+     	}catch(java.lang.IndexOutOfBoundsException ex)
+     	{
+     		institucion = null;
+     	}           
+         session.close();
+         return institucion;
+    }
+    @SuppressWarnings("unchecked")
    	@Override
    	public List<ComunicadoNoticia> listarComunicados() {   	    		    
             Session session = HibernateUtil.getSessionFactory().openSession();
             List<ComunicadoNoticia> result = session.getNamedQuery("listarComunicados").setResultTransformer(Transformers.aliasToBean(ComunicadoNoticia.class)).list();                           	  
+           
+          /**  for (ComunicadoNoticia cm : result) {
+				ImageExtractor im = new ImageExtractor();
+				try {
+					logger.debug("IMAGEN: "+im.extractImageUrl(cm.getContenido()));
+				
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}*/
             session.close();
             return result;                                   	       	               
       	}
@@ -317,43 +371,31 @@ public class PublicoDAOImpl implements PublicoDAO{
             session.close();
             return result;                                   	       	               
       	}
-    
-    /*
-     * CRUD OPERATIONS
-     * */
-
+    @SuppressWarnings("unchecked")
    	@Override
-    public void updateInstitucion(Institucion institucion)
+    public List<TramiteTransportista> getTramiteTransportista()
     {
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	//HibernateTemplate ht = new HibernateTemplate();
-    	//ht.setSessionFactory((SessionFactory) session);
-		//ht.save(institucion);
-		//session.close();
-		//logger.info("Person saved successfully, Person Details="+institucion);
-		Transaction tx = session.getTransaction();
-   	 	tx.begin();
-   	 	session.update(institucion);
-   	 	tx.commit();
-		session.close();
-   	 
-		
+    	  Session session = HibernateUtil.getSessionFactory().openSession();
+          List<TramiteTransportista> result = session.getNamedQuery("listarTramites").setResultTransformer(Transformers.aliasToBean(TramiteTransportista.class)).list();                           	  
+          session.close();
+          return result;   
     }
+    @SuppressWarnings("unchecked")
    	@Override
-    public void addLink(Link link)
+    public List<PreguntaFrecuente> getPreguntasFrecuentes()
     {
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    
-    	Transaction tx = session.getTransaction();
-    	 tx.begin();
-		session.saveOrUpdate(link);
-		
-		
-		tx.commit();
-		session.close();
-		logger.info("Person saved successfully, Person Details="+link);
-		
-		
+    	  Session session = HibernateUtil.getSessionFactory().openSession();
+          List<PreguntaFrecuente> result = session.getNamedQuery("listarPreguntasFrecuentes").setResultTransformer(Transformers.aliasToBean(PreguntaFrecuente.class)).list();                           	  
+          session.close();
+          return result;   
     }
-     
+    @SuppressWarnings("unchecked")
+   	@Override
+    public List<TarifaTransporte> getTarifaTransporte()
+    {
+  	  	Session session = HibernateUtil.getSessionFactory().openSession();
+        List<TarifaTransporte> result = session.getNamedQuery("listarTarifas").setResultTransformer(Transformers.aliasToBean(TarifaTransporte.class)).list();                           	  
+        session.close();
+        return result;  
+    }
 }

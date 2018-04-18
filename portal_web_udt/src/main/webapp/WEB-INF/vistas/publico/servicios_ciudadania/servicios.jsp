@@ -6,6 +6,13 @@
 <script src="${pageContext.request.contextPath}/recursos/publico/js/lightbox-plus-jquery.min.js"></script>
 
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Servicios a la ciudadanía</div>
+    	<div>Servicios</div>
+    </div>
+</div>
     <div class="inner-wrap clearfix">
         <div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
         <div class="main-content-section clearfix">

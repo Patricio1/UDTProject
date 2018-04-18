@@ -96,6 +96,10 @@
 		<put-attribute name="title" value="Noticia" />
 		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/entidad/noticia.jsp" />
 	</definition>
+	<definition name="tarifas-transporte" extends="definicion.principal">
+		<put-attribute name="title" value="Tarifas transporte" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/publico/servicios_ciudadania/tarifas.jsp" />
+	</definition>
 	
 	<!-- La definición principal del layout para la parte administrativa-->
 	<definition name="definicion.admin" template="/WEB-INF/tiles/admin/layout.jsp">
@@ -143,5 +147,49 @@
 	<definition name="form-recurso" extends="definicion.admin">
 		<put-attribute name="title" value="Form Recursos" />
 		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formRecurso.jsp" />
+	</definition>
+	<definition name="listado-directorioc" extends="definicion.admin">
+		<put-attribute name="title" value="Directorio Cooperativas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoDirectorioCooperativa.jsp" />
+	</definition>
+	<definition name="form-directorioc" extends="definicion.admin">
+		<put-attribute name="title" value="Directorio Cooperativas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formRegisterDC.jsp" />
+	</definition>
+	<definition name="form-directoriocu" extends="definicion.admin">
+		<put-attribute name="title" value="Directorio Cooperativas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formUpdateDC.jsp" />
+	</definition>
+	<definition name="listado-area-transferencia" extends="definicion.admin">
+		<put-attribute name="title" value="Área Transferencia" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoAreaTransferencia.jsp" />
+	</definition>
+	<definition name="form-area-transferencia" extends="definicion.admin">
+		<put-attribute name="title" value="Área Transferencia" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formAreaTransferencia.jsp" />
+	</definition>
+	<definition name="listado-tramites-transportistas" extends="definicion.admin">
+		<put-attribute name="title" value="Trámites para transportistas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoTramites.jsp" />
+	</definition>
+	<definition name="form-tramite-transportista" extends="definicion.admin">
+		<put-attribute name="title" value="Trámites para transportistas" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formTramite.jsp" />
+	</definition>
+	<definition name="listado-preguntas-frecuentes" extends="definicion.admin">
+		<put-attribute name="title" value="Preguntas Frecuentes" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoPreguntaFrecuente.jsp" />
+	</definition>
+	<definition name="form-pregunta-frecuente" extends="definicion.admin">
+		<put-attribute name="title" value="Preguntas Frecuentes" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formPreguntaFrecuente.jsp" />
+	</definition>
+	<definition name="listado-tarifas-transporte" extends="definicion.admin">
+		<put-attribute name="title" value="Tarifas de Transporte" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoTarifas.jsp" />
+	</definition>
+	<definition name="form-tarifa-transporte" extends="definicion.admin">
+		<put-attribute name="title" value="Tarifas de Transporte" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formTarifa.jsp" />
 	</definition>
 </tiles-definitions>

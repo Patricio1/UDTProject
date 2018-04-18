@@ -28,5 +28,8 @@
   <mapping resource="entity/DetalleCooperativa.hbm.xml"/>
   <mapping resource="entity/Recurso.hbm.xml"/>
   <mapping resource="entity/PreguntaGlosario.hbm.xml"/>
+  <mapping resource="entity/TramiteTransportista.hbm.xml"/>
+  <mapping resource="entity/PreguntaFrecuente.hbm.xml"/>
+  <mapping resource="entity/TarifaTransporte.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

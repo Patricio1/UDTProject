@@ -83,7 +83,7 @@
 													<div class="widget-main">
 
 
-<a class="btn btn-success" href="<c:url value="/form-recurso"/>"
+<a class="btn btn-success" href="<c:url value="form-recurso"/>"
 role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
 				
 <div class="table-responsive" style="margin-left: 5px;margin-right: 5px;margin-top:10px" >    
@@ -131,8 +131,8 @@ role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
      			 </c:choose>
 				</td>
 				<td>
-				<a href="<c:url value="/form-recurso?id=${item_recurso.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> Editar</a>
-				<a onclick="return confirm('Esta seguro?');" href="<c:url value="/eRecurso?id=${item_recurso.id}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+				<a href="<c:url value="form-recurso?id=${item_recurso.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> Editar</a>
+				<a onclick="return confirm('Esta seguro?');" href="<c:url value="/Recurso?id=${item_recurso.id}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
 				</td>
 				
 				
@@ -172,5 +172,8 @@ role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
 				responsive: true,
 				 "lengthMenu": [[5, 15, 25, -1], [5, 10, 25, "All"]]
 				});
+			$('#oRecursos').attr('class','active');
+			$('#oPublico').attr('class','open');
 		} );
+		
 		</script>

@@ -3,6 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Comunicado</div>
+    </div>
+</div>
 	<div class="inner-wrap clearfix">
    		<div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
    		<div class="main-content-section clearfix">

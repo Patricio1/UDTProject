@@ -2,6 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- Inicio recursos froala editor -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/admin/css/codemirror.min.css" />
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/admin/js/codemirror.min.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/admin/js/xml.min.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/admin/js/froala_editor.pkgd.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/admin/css/froala_editor.pkgd.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/admin/css/froala_style.min.css" />
+<!-- Fin recursos froala editor -->
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -36,7 +44,7 @@
 								Panel de Administración
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Visión General
+									Institución
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -110,8 +118,19 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="logo"> Logo Institucional </label>
 		<div class="col-sm-9">
-		<form:radiobutton path="imgOpcion"  value="URL"/>URL
-		<form:radiobutton path="imgOpcion" value="Local"/>Local
+			<div class="radio">
+				<label>
+				 <form:radiobutton path="imgOpcion"  value="URL" cssClass="ace"/>													
+					<span class="lbl"> URL</span>
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				 <form:radiobutton path="imgOpcion"  value="Local" cssClass="ace"/>			
+					<span class="lbl"> Local</span>
+				</label>
+		    </div>
+	
 		<form:errors path="imgOpcion" class="control-label" cssStyle="color:red;font-size:13px;margin-left:9px"/>
 		<input id="file" type="file" name="file"/>
 		<form:input path="logo" placeholder="Escriba la url de la imagen.." cssClass="form-control" maxlength="150"/>
@@ -175,32 +194,32 @@
 
 <div class="tab-pane fade" id="tab3info">
 <div class="form-group">
-	<label class="col-sm-3 control-label no-padding-right" for="mision"> Misión </label>
-	<div class="col-sm-9">
+	<label class="col-sm-2 control-label no-padding-right" for="mision"> Misión </label>
+	<div class="col-sm-10">
 	<form:textarea path="mision"  cols="30" rows="10" cssClass="form-control" placeholder="Escriba la misión.." maxlength="950"/>
 	<form:errors path="mision" class="control-label" cssStyle="color:red;font-size:13px"/>
 	</div>
 </div>
 														
 <div class="form-group">
-	<label class="col-sm-3 control-label no-padding-right" for="vision"> Visión </label>
-	<div class="col-sm-9">
+	<label class="col-sm-2 control-label no-padding-right" for="vision"> Visión </label>
+	<div class="col-sm-10">
 	<form:textarea path="vision"  cols="30" rows="10" cssClass="form-control" placeholder="Escriba la visión.." maxlength="950"/>
 	<form:errors path="vision" class="control-label" cssStyle="color:red;font-size:13px"/>
 	</div>
 </div>
 														
 <div class="form-group">
-	<label class="col-sm-3 control-label no-padding-right" for="valores"> Valores Institucionales </label>
-	<div class="col-sm-9">
+	<label class="col-sm-2 control-label no-padding-right" for="valores"> Valores Institucionales </label>
+	<div class="col-sm-10">
 	<form:textarea path="valores"  cols="30" rows="10" cssClass="form-control" placeholder="Escriba los valores institucionales.."/>
 	<form:errors path="valores" class="control-label" cssStyle="color:red;font-size:13px"/>
 	</div>
 </div>
 														
 <div class="form-group">
-	<label class="col-sm-3 control-label no-padding-right" for="acercaDe"> Acerca de </label>
-	<div class="col-sm-9">
+	<label class="col-sm-2 control-label no-padding-right" for="acercaDe"> Acerca de </label>
+	<div class="col-sm-10">
 	<form:textarea path="acercaDe"  cols="30" rows="10" cssClass="form-control" placeholder="Escriba acerca de la institución.."/>
 	<form:errors path="acercaDe" class="control-label" cssStyle="color:red;font-size:13px"/>
 	</div>
@@ -250,19 +269,58 @@ Guardar
 			</div><!-- /.main-content -->
 			
 <script>
+  function iniciarFroalaEditor(idTextArea)
+  {
+		    $('#'+idTextArea).froalaEditor({
+		      // Set the file upload URL.
+		      toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo'],
+		      fileUploadURL: 'http://localhost:8080/udt/upload_file',
+		      imageUploadURL:'http://localhost:8080/udt/upload_image',
+		      videoUploadURL:'http://localhost:8080/udt/upload_video',
+		      fileUploadParams: {
+		        id: 'my_editor'
+		      },
+		      imageManagerLoadURL: 'http://localhost:8080/udt/load_images',
+		      imageManagerDeleteURL: "http://localhost:8080/udt/delete_image",
+		      imageManagerDeleteMethod: "POST"
+		    });	 
+  }
 
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    $('#logo').hide();
+    iniciarFroalaEditor('vision');
+    iniciarFroalaEditor('mision');
+    iniciarFroalaEditor('valores');
+    iniciarFroalaEditor('acercaDe');
+
+	$('#oInstitucion').attr('class','active');
+	$('#oPublico').attr('class','open');
+    
     setImageOption();
-//    setRequired();
+    initInputFileCustom();
+    setRequired();
     var logoinst = $('#logo').val();
+    if(logoinst.length>0)
+		{
+    	hideShowImageOption('URL');
+    	$('#imgOpcion1').attr('checked',true);
+    	}
+    else {
+    	hideShowImageOption('Local');
+    	$('#imgOpcion2').attr('checked',true);
+        }
     var existeImagen = imageExists(logoinst);
+    console.log("EXISTE IMAGEN: "+existeImagen);
     if(existeImagen)
         {
-    	 $('#logoinst').attr('src',logoinst);
+    	$('#logoinst').attr('src',logoinst);
+    	$('#logoinst').show();  
         }
+    else
+		{
+    	$('#logoinst').hide();
+    	}
    
    // console.log("existe "+imageExists(logoinst));
    
@@ -277,21 +335,27 @@ $(document).ready(function(){
 function setImageOption()
 {
 	$('input[type=radio][name=imgOpcion]').change(function() {
-	    if (this.value == 'URL') {
+		hideShowImageOption(this.value); 
+	});
+}
+function hideShowImageOption(opcionImagen)
+{
+	 if (opcionImagen == 'URL') {
 	    	$('#logo').show();
 			$('#file').hide();
+			$('.ace-file-container').hide();
 			
 			$("#logo").prop('required',true);
 			$("#file").prop('required',false);
 	    }
-	    else if (this.value == 'Local') {
+	    else if (opcionImagen == 'Local') {
 	    	$('#logo').hide();
 			$('#file').show();
+			$('.ace-file-container').show();
 
 			$("#logo").prop('required',false);
 			$("#file").prop('required',true);
 	    }
-	});
 }
 function isNumber(evt, element) {
 
@@ -329,5 +393,20 @@ function setRequired()
 	$("#valores").prop('required',true);	
 	$("#acercaDe").prop('required',true);
 }
+function initInputFileCustom()
+{
+	$('#file').ace_file_input({
+		style: 'well',
+		btn_choose: 'Arrastre aquí la imagen o click para seleccionar',
+		btn_change: null,
+		no_icon: 'ace-icon fa fa-cloud-upload',
+		droppable: true,
+		thumbnail: 'small'//large | fit
+		,
+		preview_error : function(filename, error_code) {		
+		}
 
+	}).on('change', function(){
+	});
+}
 </script>

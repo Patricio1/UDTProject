@@ -68,7 +68,7 @@
 <div class="row">
 	
 
-<div class="col-md-12">
+<div class="col-md-12" >
 	<div class="form-group">
 			<div class="col-sm-6 col-sm-offset-3"> 
 				<a href="listado-recursos" >
@@ -177,21 +177,10 @@ Guardar
 			
 <script>
 $(document).ready(function(){
-	  //$("#nombre").prop('required',true);
-	  //$("#descripcion").prop('required',true);
-    //$('#imagen').hide();
-    //setImageOption();
-
-    /**var imagen = $('#imagen').val();
-    var existeImagen = imageExists(imagen);
-    if(existeImagen)
-        {
-    	 $('#imgServicio').attr('src',imagen);
-        }*/
-    //var  = $('#imagen').val();
-    //$('#logoinst').attr('src',logoinst);
      initInputFileCustom();
-     //setRequired();
+     setRequired();
+ 	$('#oRecursos').attr('class','active');
+	$('#oPublico').attr('class','open');
 });
 function imageExists(image_url){
 
@@ -230,5 +219,12 @@ function setRequired()
 {
 	$('#nombre').prop('required',true);
 	$('#tipo1').prop('required',true);
+	
+	if($('#url').val().length>0)
+		{
+		$('#file').prop('required',false);
+		}
+	else $('#file').prop('required',true);
 }
+
 </script>

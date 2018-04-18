@@ -2,7 +2,9 @@ package uta.gad.udt.controllers;
 
 
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,6 +14,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +37,11 @@ public class Pruebas {
     private static PublicoService publicoService;
 	static Multimap<String, String> AuxMultimapAgruparHora = ArrayListMultimap.create();
 	static ArrayList<String> listaidDias = new ArrayList<String>();
+	
 	public static void main(String[] args) {
 		try{
+			
+		        
 		PublicoServiceImpl servicio= new PublicoServiceImpl();
 	/**	BigDecimal lat = new BigDecimal(-12.455);
 		BigDecimal lon = new BigDecimal(-34.88912);

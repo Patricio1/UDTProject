@@ -54,7 +54,7 @@
 								<div class="col-sm-12">
 											<div class="widget-box">
 												<div class="widget-header">
-													<h4 class="widget-title">Comunicados/Noticias de la Institución</h4>
+													<h4 class="widget-title">Comunicados y Noticias de la Institución</h4>
 
 													<span class="widget-toolbar">												
 														<a href="#" data-action="collapse">
@@ -67,7 +67,7 @@
 													<div class="widget-main">
 
 
-<a class="btn btn-success" href="<c:url value="/form-comunicadoNoticia"/>"
+<a class="btn btn-success" href="<c:url value="form-comunicadoNoticia"/>"
 role="button">Agregar Comunicado/Noticia <span class="fa fa-plus"></span> </a>
 				
 <div class="table-responsive" style="margin-left: 5px;margin-right: 5px;margin-top:10px" >    
@@ -115,8 +115,8 @@ role="button">Agregar Comunicado/Noticia <span class="fa fa-plus"></span> </a>
 					  </c:choose>
 				</td>
 				<td>
-				<a href="<c:url value="/form-comunicadoNoticia?id=${comserv.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i>   Editar</a>
-				<a onclick="return confirm('Está seguro?');"  href="<c:url value="/eComunicadoNoticia?id=${comserv.id}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
+				<a href="<c:url value="form-comunicadoNoticia?id=${comserv.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i>   Editar&nbsp;&nbsp;&nbsp;</a>
+				<a onclick="return confirm('Está seguro?');"  href="<c:url value="eComunicadoNoticia?id=${comserv.id}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
 				</td>		
 			</tr>																	
 		</c:forEach>								                  
@@ -154,5 +154,7 @@ role="button">Agregar Comunicado/Noticia <span class="fa fa-plus"></span> </a>
 				responsive: true,
 				 "lengthMenu": [[5, 15, 25, -1], [5, 10, 25, "All"]]
 				});
+			$('#oCN').attr('class','active');
+			$('#oPublico').attr('class','open');
 		} );
 		</script>

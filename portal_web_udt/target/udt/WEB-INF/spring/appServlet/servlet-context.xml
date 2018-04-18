@@ -13,6 +13,8 @@
 	<context:component-scan base-package="uta.gad.udt.froala" />
 	<context:component-scan base-package="uta.gad.udt.validator" />
 	
+	
+    
 	<!-- Habilita la anotacion de Spring MVC @Controller -->
 	<mvc:annotation-driven />
 	

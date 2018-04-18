@@ -8,8 +8,8 @@
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 <ul class="nav nav-list">
-					<li class="active" >
-						<a href="index.html" style="height: 50px">
+					<li class="" >
+						<a href="javascript:void();" style="height: 50px">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Panel de Administración </span>
 						</a>
@@ -18,7 +18,7 @@
 					</li>
 
 					<!--Inicio menu parte publica portal web -->
-					<li class="">
+					<li class="" id="oPublico">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-pencil-square-o"></i>
 
@@ -34,7 +34,7 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
+							<li class="" id="oInstitucion">
 								<a href="institucion-info">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Institución
@@ -43,7 +43,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="oRecursos">
 								<a href="listado-recursos">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Recursos
@@ -52,19 +52,51 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="areas-transferencia.html">
+							<li class="" id="oAtransferencia">
+								<a href="listado-area-transferencia">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Áreas de transferencia
 								</a>
 
 								<b class="arrow"></b>
 							</li>
+							<li class="" id="oTramites">
+								<a href="listado-tramites-transportistas">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Trámites para transportistas
+								</a>
 
-							<li class="">
+								<b class="arrow"></b>
+							</li>
+							<li class="" id="oTarifa">
+								<a href="listado-tarifas-transporte">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tarifas de transporte
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="" id="oPreguntasF">
+								<a href="listado-preguntas-frecuentes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Preguntas frecuentes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="" id="oServicios">
 								<a href="listado-servicios">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Servicios
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="" id="oDirectorioC">
+								<a href="listado-directorioc">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Directorio Cooperativas
 								</a>
 
 								<b class="arrow"></b>
@@ -79,7 +111,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<li class="" id="oCN">
 								<a href="listado-comunicado-noticia">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Comunicados/Noticias
@@ -339,3 +371,15 @@
 
 
 				</ul><!-- /.nav-list -->
+				<script>
+		$(document).ready(function() {		
+			
+			$('#oPublico > .submenu > li').click(function(){
+				console.log($(this).attr('id'));
+				var opcion = $(this).attr('id');
+				$('#oPublico').attr('class','open');
+				$('#'+opcion).attr('class','active');
+				});
+		} );
+		
+		</script>

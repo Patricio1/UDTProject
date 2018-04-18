@@ -5,6 +5,8 @@ import java.net.URLDecoder;
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -120,8 +122,28 @@ public class RestControlador {
 		diasSemana.put(4,"Jueves");diasSemana.put(5,"Viernes");diasSemana.put(6,"Sábado");
 		diasSemana.put(7,"Domingo");*/
 	   //String fecha = diasSemana.get(diasemana)+", "+dia+" de "+nombreMeses.get(mes)+" de "+year;
-	   
-		String fecha = "26-03-2018";
+		Date today = new Date();
+		 Calendar cal = Calendar.getInstance();
+	        cal.setTime(today); // don't forget this if date is arbitrary
+	        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1 being Sunday
+	        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+	        int month = cal.get(Calendar.MONTH)+1; // 0 being January
+	        int year = cal.get(Calendar.YEAR);
+	        
+	        int mes = month;
+			int dia = dayOfMonth;
+			int diasemana = dayOfWeek-1;
+			
+		HashMap<Integer,String> nombreMeses = new HashMap<Integer, String>();
+		nombreMeses.put(1,"Enero");nombreMeses.put(2,"Febrero");nombreMeses.put(3,"Marzo");
+		nombreMeses.put(4,"Abril");nombreMeses.put(5,"Mayo");nombreMeses.put(6,"Junio");
+		nombreMeses.put(7,"Julio");nombreMeses.put(8,"Agosto");nombreMeses.put(9,"Septiembre");
+		nombreMeses.put(10,"Octubre");nombreMeses.put(11,"Noviembre");nombreMeses.put(12,"Diciembre");
+		HashMap<Integer,String> diasSemana = new HashMap<Integer, String>();
+		diasSemana.put(1,"Lunes");diasSemana.put(2,"Martes");diasSemana.put(3,"Miércoles");
+		diasSemana.put(4,"Jueves");diasSemana.put(5,"Viernes");diasSemana.put(6,"Sábado");
+		diasSemana.put(7,"Domingo");
+	   String fecha = diasSemana.get(diasemana)+", "+dia+" de "+nombreMeses.get(mes)+" de "+year;
 	   return fecha;
 	}
 	@RequestMapping(value="/ultimas4noticias", method = RequestMethod.GET)

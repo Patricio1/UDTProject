@@ -3,6 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>La Entidad</div>
+    	<div>Acerca de</div>
+    </div>
+</div>
 	<div class="inner-wrap clearfix">
    		<div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
    		<div class="main-content-section clearfix">
@@ -15,13 +22,8 @@
 							    <div class="col-sm-1" >      
 							    </div>
 							    <div class="col-sm-10">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae! 
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae!</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae! 
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae!</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae! 
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia molestiae quidem, iste unde laborum itaque dignissimos ipsam commodi, ex saepe fugiat explicabo, harum assumenda sit eum nobis, perspiciatis non quae!</p>
-								    </div>
+							    ${info.acercaDe}
+								 </div>
 								    <div class="col-sm-1">    
 								    </div>
 								  </div>

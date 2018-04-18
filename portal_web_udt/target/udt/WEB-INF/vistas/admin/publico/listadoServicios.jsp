@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- Recursos para tabla -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/admin/css/dataTables.bootstrap.min.css" />
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/admin/js/jquery.dataTables.min.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/admin/js/dataTables.bootstrap.min.js"></script>
 
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -37,7 +41,7 @@
 								Panel de Administración
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Visión General
+									Servicios de la Institución
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -76,37 +80,31 @@
 													<div class="widget-main">
 
 
-<a class="btn btn-success" href="<c:url value="/form-servicio"/>"
+<a class="btn btn-success" href="<c:url value="form-servicio"/>"
 role="button">Agregar Servicio <span class="fa fa-plus"></span> </a>
 				
 <div class="table-responsive" style="margin-left: 5px;margin-right: 5px;margin-top:10px" >    
-<table id="responsive-example-table" class="table tablamultas" cellspacing="0">
+<table id="tabla-servicios" class="table table-striped table-bordered" style="width:100%"">
  <thead style="background:#009688;color: white">
-    <tr>     
-        <th>#</th>        
+    <tr>             
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Imagen</th>
-        <th></th> 
-        <th></th>           
+        <th><i class="fa fa-cog" aria-hidden="true"></i></th>         
     </tr>
   </thead>
     <tbody>   
      	<c:forEach items="${listaServicios}" var="servicio_">
-     		<tr>
-				<td style="text-align:center"><c:out value="${servicio_.idServicio}" /></td>
+     		<tr>			
 				<td><c:out value="${servicio_.nombre}" /></td>
-				<td style="width:70%"><c:out value="${servicio_.descripcion}" /></td>
+				<td><c:out value="${servicio_.descripcion}" /></td>
 				<td>
 				<img src="${servicio_.imagen}" width="50" height="50"/>
 				</td>
 				<td>
-				<a href="<c:url value="/form-servicio?id=${servicio_.idServicio}"/>" class="btn btn-info btn-xs"><i class="fa fa-check-square-o"></i> Editar</a>
+				<a href="<c:url value="form-servicio?id=${servicio_.idServicio}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i>  Editar&nbsp;&nbsp;&nbsp;</a>
+				<a onclick="return confirm('Esta seguro?');" href="<c:url value="eServicio?id=${servicio_.idServicio}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
 				</td>
-				<td>
-				<a onclick="return confirm('Esta seguro?');" href="<c:url value="/eServicio?id=${servicio_.idServicio}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
-				</td>
-				
 			</tr>																	
 		</c:forEach>								                  
     </tbody>
@@ -137,4 +135,13 @@ role="button">Agregar Servicio <span class="fa fa-plus"></span> </a>
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-			
+<script>
+		$(document).ready(function() {
+			$('#tabla-servicios').DataTable({
+				responsive: true,
+				 "lengthMenu": [[5, 15, 25, -1], [5, 10, 25, "All"]]
+				});
+			$('#oServicios').attr('class','active');
+			$('#oPublico').attr('class','open');		
+		} );	
+</script>			

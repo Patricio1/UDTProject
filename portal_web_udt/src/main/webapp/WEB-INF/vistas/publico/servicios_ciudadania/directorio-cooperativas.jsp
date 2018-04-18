@@ -8,7 +8,7 @@
 	  position: relative;
 	  float: left;
 	  min-height: 1px;
-	  width: 25%;
+	  width: 33.3%;
 	  padding-left: 4px;
 	  padding-right: 4px;
 	  /* Space between tiles */
@@ -62,8 +62,31 @@
 	figure:nth-child(2n+1){
 	  margin-top:30px;
 	}
+	.pag
+	{
+	background-color:#c62828;
+	}
+	.pag:hover
+	{
+	background-color:#c62828;
+	}
+	.pag1
+	{
+	background-color:e54e53;
+	}
+	.pag1:hover
+	{
+	background-color:#c62828;
+	}
 </style>
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Servicios a la ciudadanía</div>
+    	<div>Directorio de cooperativas</div>
+    </div>
+</div>
     <div class="inner-wrap clearfix">
         <div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
         <div class="main-content-section clearfix">
@@ -75,23 +98,22 @@
  <div style="padding-left: 30px;padding-right: 30px; text-align: justify;" >
  </div>
  <div id="sButtons" class="row" style="margin-bottom: 15px;margin-right:0px;margin-left:0px">
- <button class="pag" id='all' style="padding-top: 5px;
+ <button class="pag1" id='all' style="padding-top: 5px;
     padding-right: 10px;
     padding-bottom: 5px;
     padding-left: 10px;margin-bottom: 1px">Todos</button>
  <c:forEach var="inicial" items="${letraInicialCooperativas}" >
- <button class="pag" id='${inicial.letra}' style="padding-top: 5px;
+ <button class="pag1" id='${inicial.letra}' style="padding-top: 5px;
     padding-right: 10px;
     padding-bottom: 5px;
     padding-left: 10px;margin-bottom: 1px">${inicial.letra}</button>
  </c:forEach> </div>
- <br><br>
   
 
   
   <!-- Inicio seccion directorio de cooperativas-->
   
-  <div class="row my-shuffle-container" style="margin-right:0px;margin-left:0px">
+  <div class="row my-shuffle-container" style="margin-right:0px;margin-left:0px" id="directorio">
  
  <c:forEach var="coop" items="${listadoCooperativas}" >
 	  <div class="col-4@sm picture-item column" data-groups='["${coop.inicial}"]' data-title="${coop.cooperativa }">
@@ -99,24 +121,32 @@
 		      <h6 style="text-align: center;padding-top: 8px" class="logo">
 		      ${coop.cooperativa}
 		      </h6>
-		      <c:if test="${coop.logo!='sinlogo'}">
+		      <c:if test="${coop.logo!='no-logo'}">
 		      <img src="${coop.logo}" style="width: 65%;width: 65%" />
 		      </c:if>
 		      <div style="background: #eee;padding-left: 10px;padding-bottom: 5px">
 		         <p style="margin: 0px 0px 0px 0px"><strong>N° cubículo :</strong> ${coop.cubiculo}</p>
-		         <p style="margin: 0px 0px 0px 0px;" >
+		         <c:if test="${not empty coop.telefono}">
+				   <p style="margin: 0px 0px 0px 0px;" >
 		         	<i class="fa fa-phone" aria-hidden="true" style="color: #177248"></i>
 		 			${coop.telefono}
-		 		 </p>
-		         <p style="margin: 0px 0px 0px 0px"><i class="fa fa-clock-o" aria-hidden="true" style="color: #177248"></i>
+		 		  </p>
+				</c:if>
+		         
+				<c:if test="${not empty coop.horario}">
+				   <p style="margin: 0px 0px 0px 0px"><i class="fa fa-clock-o" aria-hidden="true" style="color: #177248"></i>
 					<strong>Venta boletos:</strong> ${coop.horario}
 				</p>
-					 <c:if test="${coop.website!='sinwebsite'}">
+				</c:if>
+					 <c:if test="${coop.website!='no-website'}">
 						<p style="margin: 0px 0px 0px 0px"><i class="fa fa-globe" aria-hidden="true" style="color: #177248"></i>
 						<strong>Sitio web:</strong>
-					      <a href="${coop.website}" style="color:#337ab7" >${coop.cooperativa}</a>
+					      <a href="<c:out value="${coop.website}" />" target="_blank" style="color:#337ab7" >${coop.website}</a>
 					     </p>
 				      </c:if>
+				<p style="margin: 0px 0px 0px 0px"><i class="fa fa-bus" aria-hidden="true" style="color: #177248"></i>
+					<strong>Destinos:</strong> ${coop.destinos}
+				</p>
 					
 				
 		      </div>
@@ -136,7 +166,7 @@
           </div>
           
           
-<script src="https://unpkg.com/shufflejs@5"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath}/recursos/publico/js/shuffle.js"></script>
 <script>
 	var Shuffle = window.Shuffle;
 	var element = document.querySelector('.my-shuffle-container');
@@ -146,26 +176,38 @@
 	  itemSelector: '.picture-item',
 	  sizer: sizer // could also be a selector: '.my-sizer-element'
 	});
-	// shuffleInstance.filter('animal');
+	  
 	(function() {
     'use strict'
     var todos_botones = $('#sButtons > button');
     todos_botones.click(function(){
+        var currentButton = $(this).attr('id');
+            todos_botones.each(function(){
+                if(currentButton == $(this).attr('id'))
+                    {
+                    }
+                else $(this).attr('class','pag1');
+             });
+        $(this).attr('class','pag');
         var letra = $(this).text();
         shuffleInstance.filter(letra=='Todos'?'':letra);
     });
 	}());
+	$('#directorio').children().each(function(){
+	    var $img = $(this).find("img");
+	    var value = imageExists($img.attr('src'));
+	    if(!value)
+		    {
+	    	$img.hide();
+		    }
+	});
+	function imageExists(image_url){
 
-	/**$("#all").on("click", function(){
-	   shuffleInstance.filter();
-	});
-	$("#btn-animal").on("click", function(){
-	   shuffleInstance.filter('A');
-	});
-	$("#btn-city").on("click", function(){
-	   shuffleInstance.filter('B');
-	});
-	$("#btn-nature").on("click", function(){
-	   shuffleInstance.filter('C');
-	});*/
+	    var http = new XMLHttpRequest();
+
+	    http.open('HEAD', image_url, false);
+	    http.send();
+
+	    return http.status != 404;
+	}
 </script>

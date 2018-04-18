@@ -2,17 +2,52 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/11/2017 21:39:29 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>          
+<hibernate-mapping>
+<class name="uta.gad.udt.models.entity.DetalleCooperativa" table="DETALLE_COOPERATIVA" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="idCooperativa" type="java.lang.Long">
+            <column name="ID_COOPERATIVA" not-null="true"/>
+        </property>
+        <property name="cubiculo" type="int">
+            <column name="N_CUBICULO" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="N_TELEFONO"  />
+        </property>
+        <property name="horario" type="string">
+            <column name="H_ATENCION" />
+        </property>
+        <property name="logo" type="string">
+            <column name="LOGO" />
+        </property>
+        <property name="website" type="string">
+            <column name="WEBSITE" />
+        </property>
+    </class>    
     <sql-query name="detalleCooperativa" >                       
 <return-scalar  column="cooperativa" type="java.lang.String"/>
 <return-scalar  column="inicial" type="java.lang.String"/>		
-<return-scalar column="cubiculo" type="java.lang.Long"/>	
+<return-scalar column="cubiculo" type="int"/>	
 <return-scalar column="telefono" type="java.lang.String"/>
 <return-scalar column="horario" type="java.lang.String"/>
+<return-scalar column="destinos" type="java.lang.String"/>
 <return-scalar column="logo" type="java.lang.String"/>
 <return-scalar column="website" type="java.lang.String"/>
 	<![CDATA[EXEC portal.P_GET_DIRECTORIO_COOPERATIVA]]>
     </sql-query>
+    
+<sql-query name="listarDirectorioCooperativa">
+<return-scalar  column="id" type="int"/>
+<return-scalar  column="cooperativa" type="java.lang.String"/>		
+<return-scalar column="cubiculo" type="int"/>	
+<return-scalar column="telefono" type="java.lang.String"/>
+<return-scalar column="horario" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_DETALLE_COOPERATIVA]]>
+</sql-query>
+    
     <sql-query name="cooperativasTrabajanTerminal" >                       
 <return-scalar  column="cooperativa" type="java.lang.String"/>
 <return-scalar column="logo" type="java.lang.String"/>

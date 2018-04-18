@@ -8,4 +8,9 @@
 	 <return-scalar column="idCooperativa" type="java.lang.Long"/>	
 	<![CDATA[EXEC portal.GET_COOPERATIVAS_CON_PROXIMAS_SALIDAS]]>
     </sql-query>
+     <sql-query name="nombresCooperativas" >                       
+   <return-scalar  column="nombreCooperativa" type="java.lang.String"/>	
+	 <return-scalar column="idCooperativa" type="java.lang.Long"/>	
+	<![CDATA[EXEC portal.GET_NOMBRES_COOPERATIVAS]]>
+    </sql-query>
 </hibernate-mapping>

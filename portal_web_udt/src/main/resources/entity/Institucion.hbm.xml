@@ -59,6 +59,19 @@
 	 <return-scalar  column="abreviatura" type="java.lang.String" />
 	<![CDATA[EXEC portal.GET_INFO_INSTITUCION]]>
     </sql-query>
+     <sql-query name="getPlanificacionEstrategica" >                       
+   <return-scalar  column="mision" type="java.lang.String"/>
+	 <return-scalar  column="vision" type="java.lang.String" />
+	 <return-scalar  column="valores" type="java.lang.String" />
+	<![CDATA[EXEC portal.GET_PLANIFICACION_ESTRATEGICA]]>
+    </sql-query>
+    <sql-query name="getCoordenadas" > 
+     <return-scalar  column="direccion" type="java.lang.String"/>                      
+   	<return-scalar  column="acercaDe" type="java.lang.String"/>
+	 <return-scalar  column="lat" type="big_decimal" />
+	 <return-scalar  column="lon" type="big_decimal" />
+	<![CDATA[EXEC portal.GET_COORDENADAS]]>
+    </sql-query>	
     <sql-query name="getInstitucion">
 	<return alias="institucion" class="uta.gad.udt.models.entity.Institucion"/>
 	<![CDATA[EXEC portal.GET_INSTITUCION]]>

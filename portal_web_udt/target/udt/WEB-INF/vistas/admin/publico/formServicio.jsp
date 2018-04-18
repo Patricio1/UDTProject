@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -36,7 +37,7 @@
 								Panel de Administración
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Visión General
+									Servicios
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -68,11 +69,18 @@
 <form:form class="form-horizontal" role="form" method="post"  modelAttribute="servicio" enctype="multipart/form-data">								
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12" style="margin-bottom:-50px">
+<div class="form-group">
+			<div class="col-sm-6 col-sm-offset-3"> 
+				<a href="listado-servicios" >
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				Listado Servicios</a>	
+			</div>
+</div>
 <div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="nombre"> Nombre </label>
 		<div class="col-sm-9">
-		<form:input path="nombre" placeholder="Escriba el nombre de la institución.." cssClass="form-control" maxlength="90"/>
+		<form:input path="nombre" placeholder="Escriba el nombre del servicio.." cssClass="form-control" maxlength="90"/>
 		<form:errors path="nombre" class="control-label" cssStyle="color:red;font-size:13px"/>
 		</div>
 	</div>
@@ -86,11 +94,21 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="imagen"> Imagen </label>
 		<div class="col-sm-9">
-		<form:radiobutton path="imgOpcion"  value="URL"/>URL
-		<form:radiobutton path="imgOpcion" value="Local"/>Local
+		<div class="radio">
+				<label>
+				 <form:radiobutton path="imgOpcion"  value="URL" cssClass="ace"/>													
+					<span class="lbl"> URL</span>
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				 <form:radiobutton path="imgOpcion"  value="Local" cssClass="ace"/>			
+					<span class="lbl"> Local</span>
+				</label>
+		    </div>
 		<form:errors path="imgOpcion" class="control-label" cssStyle="color:red;font-size:13px;margin-left:9px"/>
 		<input id="file" type="file" name="file"/>
-		<form:input path="imagen" placeholder="Escriba la url de la imagen.." cssClass="form-control" maxlength="150"/>
+		<form:input path="imagen" placeholder="http://" cssClass="form-control" maxlength="150"/>
 		</div>
 	</div>
 	
@@ -98,7 +116,7 @@
 		<div class="col-sm-8 col-md-offset-2">
 		
 		<c:if test="${servicio.imagen!='no-image'}">
-			<img id="imgServicio" src="" alt="${servicio.nombre}" width="400" height="400"/> 
+			<img id="imgServicio" src="${servicio.imagen}" alt="${servicio.nombre}" width="200" height="200"/> 
 		</c:if>
 			
 		</div>
@@ -109,8 +127,8 @@
 										
 <div class="clearfix">
 <div class="col-md-offset-3 col-md-9">
-<p style="color:red"> <c:out value="${fail}" /></p>
-<p style="color:#428bca"> <c:out value="${ok}" /></p>
+<p style="color:red;visibility:hidden;" id="me"> <c:out value="${fail}" /></p>
+<p style="color:#428bca;visibility:hidden;" id="ms"> <c:out value="${ok}" /></p>
 <button class="btn btn-info" type="submit">
 <i class="ace-icon fa fa-check bigger-110"></i>
 Guardar
@@ -128,35 +146,47 @@ Guardar
 </div>
 </div>
 </div>
-									
-
-									
-
-
 								</div><!-- /.row -->
-
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
-						</div><!-- /.row -->
-						
-						
+						</div><!-- /.row -->												
 					</div><!-- /.page-content -->
 				</div>
-			</div><!-- /.main-content -->
-			
+			</div><!-- /.main-content -->		
 <script>
 $(document).ready(function(){
-	  //$("#nombre").prop('required',true);
-	  //$("#descripcion").prop('required',true);
+	$('#oServicios').attr('class','active');
+	$('#oPublico').attr('class','open');
     $('#imagen').hide();
     setImageOption();
+    initInputFileCustom();
 
     var imagen = $('#imagen').val();
     var existeImagen = imageExists(imagen);
     if(existeImagen)
         {
     	 $('#imgServicio').attr('src',imagen);
+    	 $('#imgServicio').show();
         }
+    else
+        {
+    	$('#imgServicio').hide();
+        }
+
+
+    var imagenOpcion = $("input[name='imgOpcion']:checked").val();
+	hideShowImageOption(imagenOpcion);
+
+	 if($('#ms').text().trim()=='1')
+     {
+ 	mensajeSuccess("Se ha actualizado correctamente");
+     }
+	 else if($('#ms').text().trim()=='2')
+	 {
+	 	mensajeSuccess("Se ha registrado correctamente");
+	 }
+  
+    
     //var  = $('#imagen').val();
     //$('#logoinst').attr('src',logoinst);
 });
@@ -169,25 +199,51 @@ function imageExists(image_url){
 
     return http.status != 404;
 }
-
-function setImageOption()
+function hideShowImageOption(opcionImagen)
 {
-	$('input[type=radio][name=imgOpcion]').change(function() {
-	    if (this.value == 'URL') {
+	 if (opcionImagen == 'URL') {
 	    	$('#imagen').show();
 			$('#file').hide();
+			$('.ace-file-container').hide();
 			
 			$("#imagen").prop('required',true);
 			$("#file").prop('required',false);
 	    }
-	    else if (this.value == 'Local') {
+	    else if (opcionImagen == 'Local') {
 	    	$('#imagen').hide();
 			$('#file').show();
+			$('.ace-file-container').show();
 
 			$("#imagen").prop('required',false);
 			$("#file").prop('required',true);
 	    }
-	  
+}
+function setImageOption()
+{
+	$('input[type=radio][name=imgOpcion]').change(function() {
+		hideShowImageOption(this.value); 
 	});
+}
+function initInputFileCustom()
+{
+	$('#file').ace_file_input({
+		style: 'well',
+		btn_choose: 'Arrastre aquí la imagen o click para seleccionar',
+		btn_change: null,
+		no_icon: 'ace-icon fa fa-cloud-upload',
+		droppable: true,
+		thumbnail: 'small'//large | fit
+		,
+		preview_error : function(filename, error_code) {		
+		}
+
+	}).on('change', function(){
+	});
+}
+function mensajeSuccess(mensaje) {
+    alertify.success(mensaje);
+}
+function mensajeError(mensaje) {
+    alertify.error(mensaje);
 }
 </script>

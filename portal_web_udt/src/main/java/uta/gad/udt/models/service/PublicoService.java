@@ -16,10 +16,13 @@ import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.LetraInicialCooperativa;
 import uta.gad.udt.models.entity.Link;
 import uta.gad.udt.models.entity.MultasPorPlacaUnidadT;
+import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.PreguntaGlosario;
 import uta.gad.udt.models.entity.ProximaSalidaCooperativa;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
+import uta.gad.udt.models.entity.TarifaTransporte;
+import uta.gad.udt.models.entity.TramiteTransportista;
 
 public interface PublicoService {
 	public List<Link> listarLinksInteres();
@@ -37,6 +40,8 @@ public interface PublicoService {
 	public AreaTransferencia getAreaTransferenciaPorNombre(String nombreAreaTransferencia);
 	public List<AreaTransferencia> getNombresAreaTransferencia();
 	public Institucion getInfoInstitucion();
+	public Institucion getPlanificacionEstrategica();
+	public Institucion getCoordenadasInstalacionesInstitucion();
 	public List<ComunicadoNoticia> listarComunicados();
 	public ComunicadoNoticia getComunicadoNoticiaPorId(String tipo, Integer id);
 	public List<LetraInicialCooperativa> getLetraInicialCooperativa();
@@ -48,7 +53,7 @@ public interface PublicoService {
 	public List<ComunicadoNoticia> getTitularesNoticias();
 	public ComunicadoNoticia getNoticiaPrincipal();
 	public List<PreguntaGlosario> getPreguntaGlosario(String tipo);
-	
-	public void updateInstitucion(Institucion institucion);
-	public void addLink(Link link);
+	public List<TramiteTransportista> getTramiteTransportista();
+	public List<PreguntaFrecuente> getPreguntasFrecuentes();
+	public List<TarifaTransporte> getTarifaTransporte();
 }

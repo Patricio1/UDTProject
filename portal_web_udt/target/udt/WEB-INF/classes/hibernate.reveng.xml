@@ -5,6 +5,6 @@
 	<type-mapping>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
-	<table-filter match-name="COMUNICADO_NOTICIA"></table-filter>
-	<table name="COMUNICADO_NOTICIA"></table>
+	<table-filter match-name="DETALLE_COOPERATIVA"></table-filter>
+	<table name="DETALLE_COOPERATIVA"></table>
 </hibernate-reverse-engineering>

@@ -21,10 +21,13 @@ import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.LetraInicialCooperativa;
 import uta.gad.udt.models.entity.Link;
 import uta.gad.udt.models.entity.MultasPorPlacaUnidadT;
+import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.PreguntaGlosario;
 import uta.gad.udt.models.entity.ProximaSalidaCooperativa;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
+import uta.gad.udt.models.entity.TarifaTransporte;
+import uta.gad.udt.models.entity.TramiteTransportista;
 
 @Service("publicoService")
 public class PublicoServiceImpl implements PublicoService {
@@ -117,6 +120,18 @@ public class PublicoServiceImpl implements PublicoService {
 	}
 	@Override
 	@Transactional(readOnly = true)
+	 public Institucion getPlanificacionEstrategica()
+	 {
+		return publicoDAO.getPlanificacionEstrategica(); 
+	 }
+	@Override
+	@Transactional(readOnly = true)
+	 public Institucion getCoordenadasInstalacionesInstitucion()
+	 {
+		return publicoDAO.getCoordenadasInstalacionesInstitucion();
+	 }
+	@Override
+	@Transactional(readOnly = true)
 	public List<ComunicadoNoticia> listarComunicados()
 	{
 		return publicoDAO.listarComunicados();
@@ -181,17 +196,24 @@ public class PublicoServiceImpl implements PublicoService {
 	{
 		return publicoDAO.getPreguntaGlosario(tipo);
 	}
-	
 	@Override
-	 public void updateInstitucion(Institucion institucion)
+	@Transactional(readOnly = true)
+	public List<TramiteTransportista> getTramiteTransportista()
 	{
-		publicoDAO.updateInstitucion(institucion);
+		return publicoDAO.getTramiteTransportista();
 	}
 	@Override
-	public void addLink(Link link)
-	{
-		publicoDAO.addLink(link);
+	@Transactional(readOnly = true)
+	 public List<PreguntaFrecuente> getPreguntasFrecuentes()
+	 {
+		return publicoDAO.getPreguntasFrecuentes();
 	}
+	@Override
+	@Transactional(readOnly = true)
+	 public List<TarifaTransporte> getTarifaTransporte()
+	 {
+		return publicoDAO.getTarifaTransporte();
+	 }
 	
 	
 }

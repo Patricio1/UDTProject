@@ -1,13 +1,42 @@
 package uta.gad.udt.models.entity;
 
 public class DetalleCooperativa {
-private String cooperativa;
-private String inicial;
-private Long cubiculo;
+private int id;
+private Long idCooperativa;
+private int cubiculo;
 private String telefono;
 private String horario;
 private String logo;
 private String website;
+
+private String cooperativa;
+private String inicial;
+private String destinos;
+private boolean incluirLogo;
+public boolean isIncluirLogo() {
+	return incluirLogo;
+}
+public void setIncluirLogo(boolean incluirLogo) {
+	this.incluirLogo = incluirLogo;
+}
+public String getDestinos() {
+	return destinos;
+}
+public void setDestinos(String destinos) {
+	this.destinos = destinos;
+}
+public int getId() {
+	return id;
+}
+public Long getIdCooperativa() {
+	return idCooperativa;
+}
+public void setIdCooperativa(Long idCooperativa) {
+	this.idCooperativa = idCooperativa;
+}
+public void setId(int id) {
+	this.id = id;
+}
 public String getCooperativa() {
 	return cooperativa;
 }
@@ -20,10 +49,10 @@ public String getInicial() {
 public void setInicial(String inicial) {
 	this.inicial = inicial;
 }
-public Long getCubiculo() {
+public int getCubiculo() {
 	return cubiculo;
 }
-public void setCubiculo(Long cubiculo) {
+public void setCubiculo(int cubiculo) {
 	this.cubiculo = cubiculo;
 }
 public String getTelefono() {

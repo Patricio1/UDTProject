@@ -1,7 +1,7 @@
 package uta.gad.udt.models.entity;
 public class AreaTransferencia implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	private byte idArea;
+	private int idArea;
 	private String nombre;
 	private String direccion;
 	private String telefono;
@@ -21,11 +21,11 @@ public class AreaTransferencia implements java.io.Serializable {
 		this.tipoTransp = tipoTransp;
 	}
 
-	public byte getIdArea() {
+	public int getIdArea() {
 		return this.idArea;
 	}
 
-	public void setIdArea(byte idArea) {
+	public void setIdArea(int idArea) {
 		this.idArea = idArea;
 	}
 

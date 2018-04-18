@@ -2,20 +2,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Áreas de transferencia</div>
+    	<div>América</div>
+    </div>
+</div>
 	<div class="inner-wrap clearfix">
    		<div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
    		<div class="main-content-section clearfix">
+   		
+   		
+
       		<div id="primary">
          		<div id="content" class="clearfix">
          		         <section id="colormag_featured_posts_widget-3" class="widget widget_featured_posts widget_featured_meta clearfix">      <h3 class="widget-title" style="border-bottom-color:#004d40;"><span id="nombreArea" style="background-color:#004d40;"><c:out value="${area.nombre}" /></span></h3>                                                                                                                            
 								  <div class="widget widget_featured_posts widget_featured_posts_vertical widget_featured_meta clearfix">                                             
 								
 								               <div class="single-article clearfix">   
-																 								
+
+  															 								
  <div class="row" style="margin-top: 28px;">
   <div class="col-md-10 col-md-offset-1">
-    <img src="${pageContext.request.contextPath}<c:out value="${area.img}" />">
+    <c:if test="${area.img!='no-image'}">
+					<img src="${area.img}" alt="${area.nombre}"/>
+	</c:if>
+    
   </div>
 </div> 
 <div class="row">
@@ -55,7 +71,7 @@
           function getDestinos()
           {
         	  var contador = 1;
-        	  var row = '<div class="row" style="text-align: center;padding-bottom: 15px;margin-bottom:15px;margin-right:3px">';  
+        	  var row = '<div class="row" style="text-align: center;padding-bottom: 15px;margin-bottom:15px;margin-right:2px;margin-left:2px">';  
         	  var rowComplete = "";
         	  var column = ''; 
         	  var cooperativas = [];
@@ -69,7 +85,8 @@
       			$.each(data, function(array,referencia){  				  				  				 
       				if(contador % 3 == 0 && contador > 2)
       					{      					 					
-      					column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';      			      
+      					//column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';      			      
+          				column +='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#a5d6a7"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b;margin-bottom:4px"></span><div style="background: #e8f5e9;padding-left: 10px;padding-bottom: 5px;border-top-color:#a5d6a7;border-top-style: solid;border-top-width: 1px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>';      			               				
           				var auxRow = row+column+"</div>";
           				rowComplete+=auxRow;
           				banderin++;      				
@@ -78,12 +95,14 @@
       					{  					
       					if(banderin>0)
       						{
-      						column ='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						//column ='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						column ='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#a5d6a7"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b;margin-bottom:4px"></span><div style="background: #e8f5e9;padding-left: 10px;padding-bottom: 5px;border-top-color:#a5d6a7;border-top-style: solid;border-top-width: 1px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>';       						
       						banderin = 0;
       						}
-      					else column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
-      					
-      					if(contador == numeroRegistros)
+      					else //column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						column +='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#a5d6a7"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#00796b;margin-bottom:4px"></span><div style="background: #e8f5e9;padding-left: 10px;padding-bottom: 5px;border-top-color:#a5d6a7;border-top-style: solid;border-top-width: 1px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>';       					
+      						
+          					if(contador == numeroRegistros)
       						{  						
               				var auxRow = row+column+"</div>";
               				rowComplete+=auxRow;

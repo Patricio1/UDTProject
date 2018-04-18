@@ -8,4 +8,9 @@
 	 <return-scalar  column="nombreDestino" type="java.lang.String" />
 	<![CDATA[EXEC portal.GET_DESTINOS]]>
     </sql-query>
+    <sql-query name="getNombresDestinos" >                       
+   <return-scalar  column="idDestino" type="java.lang.Long"/>
+	 <return-scalar  column="nombreDestino" type="java.lang.String" />
+	<![CDATA[EXEC portal.GET_NOMBRES_DESTINOS]]>
+    </sql-query>
 </hibernate-mapping>

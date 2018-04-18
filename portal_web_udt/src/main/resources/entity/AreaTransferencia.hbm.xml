@@ -4,18 +4,18 @@
 <!-- Generated 22/12/2017 10:53:48 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="uta.gad.udt.models.entity.AreaTransferencia" table="AREA_TRANSFERENCIA" optimistic-lock="version" catalog="SICTERT" schema="portal">
-        <id name="idArea" type="byte">
+        <id name="idArea" type="int">
             <column name="ID_AREA" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="nombre" type="string">
-            <column name="NOMBRE" length="100" not-null="true" unique="true" />
+            <column name="NOMBRE" length="100" not-null="true" />
         </property>
         <property name="direccion" type="string">
             <column name="DIRECCION" length="150" not-null="true" />
         </property>
         <property name="telefono" type="string">
-            <column name="TELEFONO" length="100" />
+            <column name="TELEFONO" length="50" />
         </property>
         <property name="img" type="string">
             <column name="IMG" />
@@ -31,5 +31,12 @@
     <sql-query name="getNombresAreaTransferencia" >                       
 	   <return-scalar  column="nombre" type="java.lang.String"/>		
 		<![CDATA[EXEC portal.GET_NOMBRES_AREA_TRANSFERENCIA]]>
-    </sql-query>   
+    </sql-query> 
+      <sql-query name="getAreasTransferencia">
+	<return-scalar  column="idArea" type="int"/>
+	<return-scalar  column="nombre" type="java.lang.String"/>
+	<return-scalar  column="direccion" type="java.lang.String"/>
+	<return-scalar  column="tipoTransp" type="java.lang.String"/>
+	<![CDATA[EXEC portal.GET_AREA_TRANSFERENCIA]]>
+    </sql-query>  
 </hibernate-mapping>

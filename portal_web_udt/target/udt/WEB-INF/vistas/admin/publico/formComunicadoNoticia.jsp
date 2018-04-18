@@ -63,7 +63,7 @@
 								<div class="col-sm-12">
 											<div class="widget-box">
 												<div class="widget-header">
-													<h4 class="widget-title">Comunicados/Noticias de la Institución</h4>
+													<h4 class="widget-title">Comunicados y Noticias de la Institución</h4>
 
 													<span class="widget-toolbar">
 														<!--<a href="#" data-action="settings">
@@ -92,7 +92,7 @@
 <form:form class="form-horizontal" role="form" method="post"  modelAttribute="comunicadoNoticia" enctype="multipart/form-data">								
 
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12" style="margin-bottom:-70px">
 <div class="form-group">
 			<div class="col-sm-6 col-sm-offset-3"> 
 				<a href="listado-comunicado-noticia" >
@@ -101,15 +101,15 @@
 			</div>
 </div>
 <div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="titulo"> Título </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" for="titulo"> Título </label>
+		<div class="col-sm-11">
 		<form:input path="titulo" placeholder="Escriba el título.." cssClass="form-control" maxlength="120" />
 		<form:errors path="titulo" class="control-label" cssStyle="color:red;font-size:13px"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="contenido"> Contenido </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" for="contenido"> Contenido </label>
+		<div class="col-sm-11">
 		<form:textarea path="contenido"  cols="30" rows="10" cssClass="form-control" placeholder="Escriba el contenido.."/>
 		<form:errors path="contenido" class="control-label" cssStyle="color:red;font-size:13px"/>
 		</div>
@@ -117,8 +117,8 @@
 	
 	
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" > Tipo </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" > Tipo </label>
+		<div class="col-sm-11">
 			<div class="radio">
 				<label>
 				 <form:radiobutton path="tipo"  value="C" cssClass="ace"/>													
@@ -135,8 +135,8 @@
 	</div>
 		
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="fecha"> Fecha </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" for="fecha"> Fecha </label>
+		<div class="col-sm-11">
 		<form:input path="fecha" placeholder="yyyy-mm-dd" cssClass="form-control" maxlength="20" />
 		<form:errors path="fecha" class="control-label" cssStyle="color:red;font-size:13px"/>
 		</div>
@@ -150,8 +150,8 @@
 																
       
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="descripcion"> Estado </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" for="descripcion"> Estado </label>
+		<div class="col-sm-11">
 			<div class="radio">
 				<label>
 				 <form:radiobutton path="estado"  value="1" cssClass="ace"/>													
@@ -165,43 +165,14 @@
 				</label>
 		    </div>
 
-		<!-- bootstrap-imageupload.
-            <div class="imageupload panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title pull-left">Imagen</h3>
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default active">PC</button>
-                        <button type="button" class="btn btn-default">URL</button>
-                    </div>
-                </div>
-                <div class="file-tab panel-body">
-                    <label class="btn btn-default btn-file">
-                        <span>Examinar</span>
-                        <!-- The file is stored here.
-                        <input type="file" name="image-file">
-                    </label>
-                    <button type="button" class="btn btn-default">Remover</button>
-                </div>
-                <div class="url-tab panel-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control hasclear" placeholder="http://">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default">Submit</button>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-default">Remover</button>
-                    <!-- The URL is stored here. 
-                    <input type="hidden" name="image-url" value="https://i.pinimg.com/originals/16/70/19/167019cb170901a670a5312ce5440873.gif">
-                </div>
-            </div>
-		 bootstrap-imageupload. -->
+	
 
 		
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="imagen"> Imagen </label>
-		<div class="col-sm-9">
+		<label class="col-sm-1 control-label no-padding-right" for="imagen"> Imagen de cabecera</label>
+		<div class="col-sm-11">
 		
 		<div class="radio">
 				<label>
@@ -238,8 +209,8 @@
 										
 <div class="clearfix">
 <div class="col-md-offset-3 col-md-9">
-<p style="color:red"> <c:out value="${fail}" /></p>
-<p style="color:#428bca"> <c:out value="${ok}" /></p>
+<p style="color:red;visibility:hidden;" id="me"> <c:out value="${fail}" /></p>
+<p style="color:#428bca;visibility:hidden;" id="ms"> <c:out value="${ok}" /></p>
 <button class="btn btn-info" type="submit">
 <i class="ace-icon fa fa-check bigger-110"></i>
 Guardar
@@ -294,11 +265,8 @@ $(function() {
 
 
 $(document).ready(function(){
-
-
-
-
-	
+	$('#oCN').attr('class','active');
+	$('#oPublico').attr('class','open');
     $('#imagen').hide();
     setImageOption();
    
@@ -310,21 +278,7 @@ $(document).ready(function(){
 
     var imagenOpcion = $("input[name='imgOpcion']:checked").val();
 	hideShowImageOption(imagenOpcion);
-    /**if(imagenOpcion=='Local')
-        {
-			$('#file').prop('required',true);
-			 $('#imagen').hide();
-				$('#file').show();
-				$('.ace-file-container').show();
-			
-        }
-    else
-        {
-    	$('#imagen').prop('required',true);
-    	$('#imagen').show();
-		$('#file').hide();
-		$('.ace-file-container').hide();
-        }*/
+   
 
     $("input[name=imgOpcion]").click(function () {
        //if($(this).prop("checked"))
@@ -333,16 +287,7 @@ $(document).ready(function(){
     	   hideShowImageOption(opcionImagen);
        else if($(this).prop("checked") && opcionImagen=='URL')     
        	hideShowImageOption(opcionImagen);
-         //   { alert("checked!"); }
-        //alert('hi: '+opcionImagen);
     });
-    //alert("valor: "+user_cat);
-    /**if (!$("input[name='imgOpcion']").is(':checked')) {
-    	   alert('Nothing is checked!');
-    	}
-    file*/
-    //var  = $('#imagen').val();
-    //$('#logoinst').attr('src',logoinst);
 
  $('#datePicker')
         .datepicker({
@@ -352,17 +297,33 @@ $(document).ready(function(){
             // Revalidate the date field
             
         });
-
+ 
     var $imageupload = $('.imageupload');
     $imageupload.imageupload();
 
-   // var $urlInput = $urlTab.find('input[type="text"]');
-    //getImageThumbnailHtml("https://i.pinimg.com/originals/16/70/19/167019cb170901a670a5312ce5440873.gif");
-
-
-
-    
+    if($('#ms').text().trim()=='1')
+        {
+    	mensajeSuccess("Se ha actualizado correctamente");
+        }
+    else if($('#ms').text().trim()=='2')
+    {
+    	mensajeSuccess("Se ha registrado correctamente");
+    }
 });
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 function setRequired()
 {
 	$('#titulo').prop('required',true);
@@ -423,6 +384,5 @@ function hideShowImageOption(opcionImagen)
 			$("#file").prop('required',true);
 	    }
 }
-
 
 </script>

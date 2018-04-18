@@ -4,6 +4,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src='https://www.google.com/recaptcha/api.js'></script>
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Contacto</div>
+    </div>
+</div>
 	<div class="inner-wrap clearfix">
    		<div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
    		<div class="main-content-section clearfix">
@@ -17,8 +23,11 @@
 	    <div class="col-sm-1" >      
 	    </div>
 	    <div class="col-sm-10">
-			<p>Recuerda que estamos ubicados en la Av. Colombia 332 y Paraguay (Ingahurco)</p>
-			 <div id="map" style=" width: 100%;height: 400px;margin-bottom: 20px"></div>     
+			<p>Recuerda que estamos ubicados en ${info.direccion}</p>
+			 <div id="map" style=" width: 100%;height: 400px;margin-bottom: 20px"></div>
+			 <p id="lat" style="visibility: hidden">${info.lat}</p>
+			 <p id="lon" style="visibility: hidden">${info.lon}</p>
+			   
 	    </div>
 	    <div class="col-sm-1">    
 	    </div>
@@ -109,7 +118,9 @@
           </div>
 <script type="text/javascript">
 function MostrarEnMapa() { //-1.236065, -78.616254
-        var uluru = {lat: -1.236081,  lng: -78.616272};
+	    var latitud =  parseFloat($('#lat').text());
+	    var longitud = parseFloat($('#lon').text());
+        var uluru = {lat: latitud,  lng: longitud};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 17,
           center: uluru

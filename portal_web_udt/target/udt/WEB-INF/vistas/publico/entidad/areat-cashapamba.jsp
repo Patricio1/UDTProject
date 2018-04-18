@@ -3,6 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
  <div id="main" class="clearfix">
+  <div style="margin-left:20px;">
+    <div id="bc1" class="myBreadcrumb">
+         <div><i class="fa fa-home fa-2x"></i></div>
+        <div>Áreas de transferencia</div>
+    	<div>Cashapamba</div>
+    </div>
+</div>
 	<div class="inner-wrap clearfix">
    		<div class="front-page-top-section clearfix" style="margin-bottom: 40px"></div>
    		<div class="main-content-section clearfix">
@@ -16,7 +23,9 @@
  
  <div class="row" style="margin-top: 28px;">
   <div class="col-md-10 col-md-offset-1">
-    <img src="${pageContext.request.contextPath}<c:out value="${area.img}" />">
+    <c:if test="${area.img!='no-image'}">
+					<img src="${area.img}" alt="${area.nombre}"/>
+	</c:if>
   </div>
 </div>
 <div class="row">
@@ -28,7 +37,93 @@
 </div>
  <div class="row" style="margin-top: 10px"> 
   <div class="col-md-4 col-md-offset-4"><h6 style="font-weight: bold">Destinos:</h6></div>
+
 </div>
+<!-- <div class="row" style="text-align: center;margin-right:2px;margin-left:2px">
+ <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li class="fa fa-check" style="color:inherit"> Cevallos</li><br>
+		         <li class="fa fa-check" style="color:inherit"> 22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+	 <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li>Cevallos</li>
+		         <li>22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+	 <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li>Cevallos</li>
+		         <li>22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+</div>-->
+<!-- <div class="row" style="text-align: center">
+ <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li>Cevallos</li>
+		         <li>22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+	 <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li>Cevallos</li>
+		         <li>22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+	 <div class="col-sm-4" >
+		   <div class="thumbnail" style="padding: 0px;border-color:#ffab91">
+		    <h6 class="areas-transferencia">AMBATO-AMBATILLO</h6>
+		    <span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span>	     
+		      <div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px">
+		         <p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>
+		         <ul class="operadoras">
+		         <li>Cevallos</li>
+		         <li>22 de Julio</li>
+		         </ul>
+		      </div>
+		  </div>
+	 </div>
+</div>-->
+
+
+
 
 <div id="sDestinos">
 </div>     
@@ -45,7 +140,7 @@
 		      var liOperadoras = "";
 		      var ulOperadoras = '<ul class="operadoras">';		        		      	    
 		        for (var i = 0; i < cooperativas.length; i++) {
-		        	liOperadoras += '<li>'+cooperativas[i]+'</li>';
+		        	liOperadoras += '<li class="fa fa-check" style="color:inherit">'+cooperativas[i]+'</li>';
 				}
 		        ulOperadoras+=liOperadoras+'</ul>';
 		        return ulOperadoras;
@@ -53,7 +148,7 @@
           function getDestinos()
           {
         	  var contador = 1;
-        	  var row = '<div class="row" style="text-align: center;padding-bottom: 15px;margin-bottom:15px;margin-right:3px">';  
+        	  var row = '<div class="row" style="text-align: center;padding-bottom: 15px;margin-bottom:15px;margin-right:2px;margin-left:2px">';  
         	  var rowComplete = "";
         	  var column = ''; 
         	  var cooperativas = [];
@@ -67,7 +162,8 @@
       			$.each(data, function(array,referencia){  				  				  				 
       				if(contador % 3 == 0 && contador > 2)
       					{      					 					
-      					column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';      			      
+      					//column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      					column +='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#ffab91"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span><div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>';      			      
           				var auxRow = row+column+"</div>";
           				rowComplete+=auxRow;
           				banderin++;      				
@@ -76,11 +172,12 @@
       					{  					
       					if(banderin>0)
       						{
-      						column ='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						//column ='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						column ='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#ffab91"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span><div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>'; 
       						banderin = 0;
       						}
-      					else column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
-      					
+      					else //column +='<div class="col-sm-4" ><h6 class="areas-transferencia">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e"></span><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div>';
+      						column +='<div class="col-sm-4" ><div class="thumbnail" style="padding: 0px;border-color:#ffab91"><h6 class="areas-transferencia" style="margin-top:4px">AMBATO-'+referencia.destino+'</h6><span class="fa fa-bus" style="font-size: 45px;color:#f4511e;margin-bottom:4px"></span><div style="background: #ffccbc;padding-left: 10px;padding-bottom: 5px"><p style="margin: 0px 0px 0px 0px;font-weight: bold">Operadoras:</p>'+getListaCooperativas(referencia.cooperativas)+'</div></div></div>'; 
       					if(contador == numeroRegistros)
       						{  						
               				var auxRow = row+column+"</div>";
