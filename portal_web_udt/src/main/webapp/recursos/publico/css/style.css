@@ -1320,8 +1320,8 @@ li.default-menu {
 	background-color: #303030c4;
 }
 .footer-widgets-area {
-	padding-top: 45px;
-	padding-bottom: 10px;
+	padding-top: 25px;
+	/*padding-bottom: 10px;*/
 	color: #cccccc;
 }
 

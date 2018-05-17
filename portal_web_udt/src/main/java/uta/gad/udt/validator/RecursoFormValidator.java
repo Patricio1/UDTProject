@@ -15,7 +15,7 @@ public class RecursoFormValidator implements Validator{
 	}
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "required.nombre","Nombre es requerido!");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tipo", "required.tipo","Seleccione una opción!");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre","errors.empty.recurso.nombre");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tipo", "errors.empty.recurso.tipo");
 	}
 }

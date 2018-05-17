@@ -7,6 +7,17 @@ private String nombre;
 private String url;
 private String descripcion;
 private String tipo;
+public Recurso(int id,String nombre,String url,String descripcion,String tipo)
+{
+	this.id = id;
+	this.nombre = nombre;
+	this.url = url;
+	this.descripcion = descripcion;
+	this.tipo = tipo;
+}
+public Recurso()
+{
+}
 public String getUrl() {
 	return url;
 }

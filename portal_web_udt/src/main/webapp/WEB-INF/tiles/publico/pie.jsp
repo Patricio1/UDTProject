@@ -75,7 +75,7 @@
 	    		success: function(data,status,xhr)
 	    		{	    			
 	    			$.each(data, function(array,referencia){ 	    
-	    			link = "<li> <a href='"+referencia.url+"' target='_blank'><img src='"+referencia.icono+"' height='35' width='35' alt='"+referencia.nombre+"'>  "+referencia.nombre+"</a></li>";
+	    			link = "<li> <a href='"+referencia.url+"' target='_blank'><img style='margin-bottom:0px' src='"+referencia.icono+"' height='35' width='35' alt='"+referencia.nombre+"'>  "+referencia.nombre+"</a></li>";
 	    			$('#linksInteres').append(link);
 	    			});	    				
 	    		},

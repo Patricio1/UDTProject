@@ -113,10 +113,11 @@
   
   <!-- Inicio seccion directorio de cooperativas-->
   
+ 
   <div class="row my-shuffle-container" style="margin-right:0px;margin-left:0px" id="directorio">
  
  <c:forEach var="coop" items="${listadoCooperativas}" >
-	  <div class="col-4@sm picture-item column" data-groups='["${coop.inicial}"]' data-title="${coop.cooperativa }">
+	  <div  class="col-4@sm picture-item column" data-groups='["${coop.inicial}"]' data-title="${coop.cooperativa }">
 		   <div class="thumbnail" style="padding: 0px">
 		      <h6 style="text-align: center;padding-top: 8px" class="logo">
 		      ${coop.cooperativa}
@@ -144,7 +145,7 @@
 					      <a href="<c:out value="${coop.website}" />" target="_blank" style="color:#337ab7" >${coop.website}</a>
 					     </p>
 				      </c:if>
-				<p style="margin: 0px 0px 0px 0px"><i class="fa fa-bus" aria-hidden="true" style="color: #177248"></i>
+				<p class="destinos" style="margin: 0px 0px 0px 0px"><i class="fa fa-bus" aria-hidden="true" style="color: #177248"></i>
 					<strong>Destinos:</strong> ${coop.destinos}
 				</p>
 					
@@ -168,6 +169,77 @@
           
 <script type='text/javascript' src="${pageContext.request.contextPath}/recursos/publico/js/shuffle.js"></script>
 <script>
+///inicio de codigo de prueba
+/*var contenido = $('.destinos').text();
+var aux = new Array();
+aux = contenido.split("Destinos:");
+var destinos = new Array();
+var aDestinos = new Array();
+for ( var i=0;i<aux.length;i++) {
+	var clase = aux[i].trim().valueOf();
+	destinos = aux[i].trim().split(",");
+	for ( var j=0; j<destinos.length;j++) {
+		if(destinos[j].trim().length>0)
+		aDestinos.push(destinos[j].trim());
+	}
+}
+
+var a = aDestinos;//["1", "1", "2", "3", "3", "1"];
+var unique = a.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+unique.sort();
+var buttons ="";
+for ( var i=0;i<unique.length;i++) {
+var button = '<button class="pag1" id='+unique[i]+' style="padding-top: 5px;margin-right: 5px;padding-bottom: 5px;padding-left: 10px;margin-bottom: 2px">'+unique[i]+'</button>';
+buttons+=button;
+}
+
+$('#sButtons').append(buttons);
+/**(function() {
+    'use strict'
+    var todos_botones = $('#sButtons > button');
+    todos_botones.click(function(){
+        var currentButton = $(this).attr('id');
+            todos_botones.each(function(){
+                if(currentButton == $(this).attr('id'))
+                    {
+                    }
+                else $(this).attr('class','pag1');
+             });
+        $(this).attr('class','pag');
+        var letra = $(this).text();
+        $('.destinos').each(function(){
+            //var dest = this('.destinos').text();
+        	//$(this).hide();
+        	console.log("jaja: "+$(this).text());
+        	var nombre =letra;
+        	if($(this).text().includes(nombre))
+            	{
+        		$(this).parent().parent().parent().show();
+            	}
+        	else
+				{
+        		$(this).parent().parent().parent().hide();
+        		}
+    		if(letra=='Todos')
+        		{
+    			$(this).parent().parent().parent().show();
+        		}
+            	
+        	
+            console.log("jaja: "+dest);
+        })
+
+
+        
+    });
+	}());*/
+
+
+
+
+
+
+//////////fin codigo de prueba
 	var Shuffle = window.Shuffle;
 	var element = document.querySelector('.my-shuffle-container');
 	var sizer = element.querySelector('.my-sizer-element');

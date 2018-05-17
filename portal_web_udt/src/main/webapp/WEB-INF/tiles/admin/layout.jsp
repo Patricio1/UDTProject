@@ -9,7 +9,7 @@
 <!-- Bootstrap -->
 
 	<!-- bootstrap & fontawesome -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/publico/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recursos/publico/css/bootstrap.min.css" />
 <link rel='stylesheet' id='colormag-fontawesome-css'  href="${pageContext.request.contextPath}/recursos/publico/css/font-awesome.css" type='text/css' media='all' />
 
 		<!-- page specific plugin styles -->
@@ -81,7 +81,9 @@ href="${pageContext.request.contextPath}/recursos/admin/css/fonts.googleapis.com
 <link href="${pageContext.request.contextPath}/recursos/admin/css/alertify.core.css" rel="stylesheet prefetch" />
 <link href="${pageContext.request.contextPath}/recursos/admin/css/alertify.default.css" rel="stylesheet prefetch" />
 <script src="${pageContext.request.contextPath}/recursos/admin/js/alertify.js"></script>
-	
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 <body class="no-skin" >
 

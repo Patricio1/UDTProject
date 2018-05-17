@@ -25,15 +25,6 @@
 							</li>
 							<li class="active">Panel de Administración</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -93,7 +84,7 @@ role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
               
         <th>Nombre</th>
         <th>Descripción</th>
-        <th>V. Previa</th>
+        <th>Url</th>
         <th>Tipo</th>
         <th><i class="fa fa-cog" aria-hidden="true"></i>
         </th>         
@@ -105,11 +96,8 @@ role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
 				
 				<td><c:out value="${item_recurso.nombre}" /></td>
 				<td><c:out value="${item_recurso.descripcion}" /></td>
-				<td>
-				
-				<a class="example-image-link" href="${item_recurso.url}" data-lightbox="example-set" data-title="${item_recurso.nombre}">
-                            <img class="example-image" src="${item_recurso.url}" alt="${item_recurso.nombre}" width="60" height="60" />
-                </a> 
+				<td>	
+		          <a href="${item_recurso.url}" target="_blank">${item_recurso.url}</a> 
 				</td>
 				<td>
 				<c:choose>
@@ -131,7 +119,7 @@ role="button">Agregar Recurso <span class="fa fa-plus"></span> </a>
      			 </c:choose>
 				</td>
 				<td>
-				<a href="<c:url value="form-recurso?id=${item_recurso.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> Editar</a>
+				<a href="<c:url value="form-recurso?id=${item_recurso.id}"/>" class="btn btn-info btn-xs"><i class="fa fa-pencil-square-o"></i> Editar&nbsp;&nbsp;&nbsp;</a>
 				<a onclick="return confirm('Esta seguro?');" href="<c:url value="/Recurso?id=${item_recurso.id}"/>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Eliminar</a>
 				</td>
 				

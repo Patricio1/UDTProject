@@ -34,24 +34,6 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="" id="oInstitucion">
-								<a href="institucion-info">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Institución
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="" id="oRecursos">
-								<a href="listado-recursos">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Recursos
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
 							<li class="" id="oAtransferencia">
 								<a href="listado-area-transferencia">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -60,18 +42,34 @@
 
 								<b class="arrow"></b>
 							</li>
-							<li class="" id="oTramites">
-								<a href="listado-tramites-transportistas">
+								<li class="" id="oCN">
+								<a href="listado-comunicado-noticia">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Trámites para transportistas
+									Comunicados/Noticias
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-							<li class="" id="oTarifa">
-								<a href="listado-tarifas-transporte">
+							<li class="" id="oDirectorioC">
+								<a href="listado-directorioc">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Tarifas de transporte
+									Directorio Cooperativas
+								</a>
+
+								<b class="arrow"></b>
+							</li>				
+							<li class="" id="oInstitucion">
+								<a href="institucion-info">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Institución
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="" id="oLinks">
+								<a href="listado-links-interes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Links de interés
 								</a>
 
 								<b class="arrow"></b>
@@ -84,7 +82,14 @@
 
 								<b class="arrow"></b>
 							</li>
+							<li class="" id="oRecursos">
+								<a href="listado-recursos">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Recursos
+								</a>
 
+								<b class="arrow"></b>
+							</li>
 							<li class="" id="oServicios">
 								<a href="listado-servicios">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -93,46 +98,26 @@
 
 								<b class="arrow"></b>
 							</li>
-							<li class="" id="oDirectorioC">
-								<a href="listado-directorioc">
+							<li class="" id="oTarifa">
+								<a href="listado-tarifas-transporte">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Directorio Cooperativas
+									Tarifas de transporte
 								</a>
 
+								<b class="arrow"></b>
+							</li>							
+							<li class="" id="oTramites">
+								<a href="listado-tramites-transportistas">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Trámites para transportistas
+								</a>
 								<b class="arrow"></b>
 							</li>
-
-							<li class="">
-								<a href="#">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Parroquias
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="" id="oCN">
-								<a href="listado-comunicado-noticia">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Comunicados/Noticias
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<!-- <li class="">
-								<a href="#">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Comunicados
-								</a>
-
-								<b class="arrow"></b>
-							</li>-->
-
+							
 						</ul>
 					</li>
 					<!--Fin menu parte publica portal web -->
-					<li class="">
+					<!-- <li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-id-card-o"></i>
 							<span class="menu-text">
@@ -363,11 +348,11 @@
 							<i class="menu-icon fa fa-rss"></i>
 							<span class="menu-text"> Dispositivos RFID </span>
 
-							<!--<b class="arrow fa fa-angle-down"></b>-->
+							
 						</a>
 
 						<b class="arrow"></b>
-					</li>
+					</li>-->
 
 
 				</ul><!-- /.nav-list -->

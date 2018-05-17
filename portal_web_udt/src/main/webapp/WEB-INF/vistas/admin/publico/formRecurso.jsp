@@ -19,15 +19,6 @@
 							</li>
 							<li class="active">Panel de Administración</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -140,8 +131,7 @@
 										
 <div class="clearfix">
 <div class="col-md-offset-3 col-md-9">
-<p style="color:red"> <c:out value="${fail}" /></p>
-<p style="color:#428bca"> <c:out value="${ok}" /></p>
+<p style="color:#428bca;visibility:hidden;" id="ms"> <c:out value="${ok}" /></p>
 <button class="btn btn-info" type="submit">
 <i class="ace-icon fa fa-check bigger-110"></i>
 Guardar
@@ -181,6 +171,14 @@ $(document).ready(function(){
      setRequired();
  	$('#oRecursos').attr('class','active');
 	$('#oPublico').attr('class','open');
+	if($('#ms').text().trim().indexOf("1|") >= 0)
+    {
+	mensajeSuccess($('#ms').text());
+    }
+	 else if($('#ms').text().trim().indexOf("2|") >= 0)
+	 {
+		 mensajeError($('#ms').text());
+	 }
 });
 function imageExists(image_url){
 
@@ -226,5 +224,10 @@ function setRequired()
 		}
 	else $('#file').prop('required',true);
 }
-
+function mensajeSuccess(mensaje) {
+    alertify.success(mensaje);
+}
+function mensajeError(mensaje) {
+    alertify.error(mensaje);
+}
 </script>

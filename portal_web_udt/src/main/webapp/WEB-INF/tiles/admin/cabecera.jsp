@@ -25,36 +25,35 @@
 
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/images/avatars/avatar5.png" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Bienvenido,</small>
-									Admin
+									${user}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
+								<!-- <li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Settings
+										Configuración
 									</a>
-								</li>
+								</li>-->
 
 								<li>
-									<a href="#">
+									<a href="perfil-usuario">
 										<i class="ace-icon fa fa-user"></i>
-										Profile
+										Perfil
 									</a>
 								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="../logout">
 										<i class="ace-icon fa fa-power-off"></i>
-										Logout
+										Cerrar sesión
 									</a>
 								</li>
 							</ul>

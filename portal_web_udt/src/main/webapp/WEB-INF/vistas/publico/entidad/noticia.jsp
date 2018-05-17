@@ -26,9 +26,6 @@
 							    <div style="padding-top:20px; text-align: justify;">
  <h3>${noticia.titulo} </h3>
  <div class="posted-on" style="float: right;font-size: 15px"><i class="fa fa-calendar-o"></i> <time id="fechaComunicado" class="entry-date published" datetime="${noticia.fecha}">Publicado: ${noticia.fecha}</time></div> 
-<c:if test="${not empty  noticia.imagen}">  
-    <img src="${noticia.imagen}" alt="${noticia.titulo}">
-    </c:if>
 <br><br>
     <p>${noticia.contenido}
     </p>

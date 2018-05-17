@@ -7,6 +7,16 @@ public class Link implements java.io.Serializable {
 	private String nombre;
 	private String icono;
 	private String url;
+	private String imgOpcion;
+
+	public String getImgOpcion() {
+		return imgOpcion;
+	}
+
+	public void setImgOpcion(String imgOpcion) {
+		this.imgOpcion = imgOpcion;
+	}
+
 	public String getIcono() {
 		return icono;
 	}

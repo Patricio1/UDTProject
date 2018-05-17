@@ -10,16 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 import uta.gad.udt.models.dao.AdministracionDAO;
 import uta.gad.udt.models.entity.AreaTransferencia;
 import uta.gad.udt.models.entity.ComunicadoNoticia;
+import uta.gad.udt.models.entity.ConfigMail;
 import uta.gad.udt.models.entity.CooperativaConProximasSalidas;
 import uta.gad.udt.models.entity.DestinosFrecuencia;
 import uta.gad.udt.models.entity.DetalleCooperativa;
 import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.Link;
+import uta.gad.udt.models.entity.Perfil;
 import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
 import uta.gad.udt.models.entity.TarifaTransporte;
 import uta.gad.udt.models.entity.TramiteTransportista;
+import uta.gad.udt.models.entity.Usuario;
 
 @Service("administracionService")
 public class AdministracionServiceImpl implements AdministracionService {
@@ -28,14 +31,9 @@ public class AdministracionServiceImpl implements AdministracionService {
 	private AdministracionDAO administracionDAO; 
 	
 	@Override
-	 public void updateInstitucion(Institucion institucion)
+	 public int updateInstitucion(Institucion institucion)
 	{
-		administracionDAO.updateInstitucion(institucion);
-	}
-	@Override
-	public void addLink(Link link)
-	{
-		administracionDAO.addLink(link);
+		return administracionDAO.updateInstitucion(institucion);
 	}
 	@Override
 	@Transactional(readOnly = true)
@@ -209,5 +207,45 @@ public class AdministracionServiceImpl implements AdministracionService {
 	public List<DestinosFrecuencia> getNombresDestinos()
 	{
 		return administracionDAO.getNombresDestinos();
+	}
+	@Override
+	public int updateConfigMail(ConfigMail configmail)
+	{
+		return administracionDAO.updateConfigMail(configmail);
+	}
+	@Override
+	public Link getLinkInteresById(short id)
+	{
+		return administracionDAO.getLinkInteresById(id);
+	}
+	@Override
+	public int saveLinkInteres(Link linkInteres)
+	{
+		return administracionDAO.saveLinkInteres(linkInteres);
+	}
+	@Override
+	public int deleteLinkInteres(Link linkInteres)
+	{
+		return administracionDAO.deleteLinkInteres(linkInteres);
+	}
+	@Override
+	public Usuario getUsuarioById(long id)
+	{
+		return administracionDAO.getUsuarioById(id);
+	}
+	@Override
+	public int saveUsuario(Usuario usuario)
+	{
+		return administracionDAO.saveUsuario(usuario);
+	}
+	@Override
+	public Perfil getPerfilById(long id)
+	{
+		return administracionDAO.getPerfilById(id);
+	}
+	@Override
+	public Usuario getUsuarioByUserName(String username)
+	{
+		return administracionDAO.getUsuarioByUserName(username);
 	}
 }

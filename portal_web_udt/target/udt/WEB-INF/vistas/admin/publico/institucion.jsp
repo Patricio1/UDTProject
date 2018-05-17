@@ -25,15 +25,6 @@
 							</li>
 							<li class="active">Panel de Administración</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -55,7 +46,7 @@
 							
 								<div class="row">
 
-								<div class="col-sm-10">
+								<div class="col-sm-12">
 											<div class="widget-box">
 												<div class="widget-header">
 													<h4 class="widget-title">Datos de la Institución</h4>
@@ -149,11 +140,13 @@
 <div class="tab-pane fade" id="tab2info">
 <div class="form-group">
 	<label class="col-sm-3 control-label no-padding-right" for="telefono"> Teléfono 
-	<a href="javascript:void();" data-toggle="tooltip" title="Escriba los telefónos separados por comas. Ejemplo: 0986385023,032748878"><li class="fa fa-info-circle" style="font-size:16px"></li></a>
 	</label>
-	<div class="col-sm-9">
+	<div class="col-sm-8">
 	<form:input path="telefono" placeholder="Escriba el teléfono" cssClass="form-control" maxlength="80" />
 	<form:errors path="telefono" class="control-label" cssStyle="color:red;font-size:13px"/>
+	</div>
+	<div class="col-sm-1">
+		<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="left" data-content="Escriba los números de teléfono separados por comas. Ejemplo: 2488678,2568732" title="" data-original-title="Números de teléfono">?</span>
 	</div>
 </div>
 <div class="form-group">
@@ -165,18 +158,19 @@
 </div>
 <div class="form-group">
 	<label class="col-sm-3 control-label no-padding-right" for="direccion"> Dirección 
-	<a href="javascript:void();" data-toggle="tooltip" title="Escriba la Dirección de las Instalaciones de la Institución, calle, avenida, sector, etc."><li class="fa fa-info-circle" style="font-size:16px"></li></a>
 	</label>
-	<div class="col-sm-9">
+	<div class="col-sm-8">
 	<form:input path="direccion" placeholder="Escriba la dirección.." cssClass="form-control" maxlength="150"/>
 	<form:errors path="direccion" class="control-label" cssStyle="color:red;font-size:13px"/>
+	</div>
+	<div class="col-sm-1">
+		<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="left" data-content="Escriba la Dirección de las Instalaciones de la Institución, calle, avenida, sector, etc." title="" data-original-title="Dirección de las instalaciones">?</span>
 	</div>
 </div>
 <div class="form-group">
 	<label class="col-sm-3 control-label no-padding-right">Ubicación 
-	<a href="javascript:void();" data-toggle="tooltip" title="Escriba la ubicación en coordenadas de las Instalaciones de la Institución; si no conoce busque en Google Maps"><li class="fa fa-info-circle" style="font-size:16px"></li></a>
 	</label>
-	<div class="col-sm-9">
+	<div class="col-sm-8">
 	<span class="input-icon">
 	<form:input path="lat" placeholder="Latitud" maxlength="13"/>
 	<i class="ace-icon fa fa-map-marker blue"></i>	
@@ -187,7 +181,9 @@
 	<i class="ace-icon fa fa-map-marker green"></i>	
 	</span>
 	<form:errors path="lon" class="control-label" cssStyle="color:red;font-size:13px"/>
-	
+	</div>
+	<div class="col-sm-1">
+		<span class="help-button" data-rel="popover" data-trigger="hover" data-placement="left" data-content="Escriba la ubicación en coordenadas de las Instalaciones de la Institución; si no conoce busque en Google Maps." title="" data-original-title="Ubicación de las instalaciones">?</span>
 	</div>
 </div>
 </div>
@@ -236,8 +232,7 @@
 										
 <div class="clearfix">
 <div class="col-md-offset-3 col-md-9">
-<p style="color:red"> <c:out value="${fail}" /></p>
-<p style="color:#428bca"> <c:out value="${ok}" /></p>
+<p style="color:#428bca;visibility: hidden" id="ms"> <c:out value="${ok}" /></p>
 <button class="btn btn-info" type="submit">
 <i class="ace-icon fa fa-check bigger-110"></i>
 Guardar
@@ -272,16 +267,15 @@ Guardar
   function iniciarFroalaEditor(idTextArea)
   {
 		    $('#'+idTextArea).froalaEditor({
-		      // Set the file upload URL.
 		      toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo'],
-		      fileUploadURL: 'http://localhost:8080/udt/upload_file',
-		      imageUploadURL:'http://localhost:8080/udt/upload_image',
-		      videoUploadURL:'http://localhost:8080/udt/upload_video',
+		      fileUploadURL: '/udt/upload_file',
+		      imageUploadURL:'/udt/upload_image',
+		      videoUploadURL:'/udt/upload_video',
 		      fileUploadParams: {
 		        id: 'my_editor'
 		      },
-		      imageManagerLoadURL: 'http://localhost:8080/udt/load_images',
-		      imageManagerDeleteURL: "http://localhost:8080/udt/delete_image",
+		      imageManagerLoadURL: '/udt/load_images',
+		      imageManagerDeleteURL: "/udt/delete_image",
 		      imageManagerDeleteMethod: "POST"
 		    });	 
   }
@@ -293,6 +287,7 @@ $(document).ready(function(){
     iniciarFroalaEditor('mision');
     iniciarFroalaEditor('valores');
     iniciarFroalaEditor('acercaDe');
+    $("div.fr-wrapper a").css( "visibility", "hidden" );
 
 	$('#oInstitucion').attr('class','active');
 	$('#oPublico').attr('class','open');
@@ -330,6 +325,14 @@ $(document).ready(function(){
     $('#lat').keypress(function (event) {
         return isNumber(event, this)
     });
+    if($('#ms').text().trim().indexOf("1|") >= 0)
+    {
+	mensajeSuccess($('#ms').text());
+    }
+	 else if($('#ms').text().trim().indexOf("2|") >= 0)
+	 {
+		 mensajeError($('#ms').text());
+	 }
 });
 
 function setImageOption()
@@ -376,7 +379,7 @@ function imageExists(image_url){
     http.open('HEAD', image_url, false);
     http.send();
 
-    return http.status != 404;
+    return http.status != 500;
 }
 function setRequired()
 {
@@ -397,16 +400,81 @@ function initInputFileCustom()
 {
 	$('#file').ace_file_input({
 		style: 'well',
-		btn_choose: 'Arrastre aquí la imagen o click para seleccionar',
+		btn_choose: 'Drop files here or click to choose',
 		btn_change: null,
 		no_icon: 'ace-icon fa fa-cloud-upload',
 		droppable: true,
 		thumbnail: 'small'//large | fit
 		,
-		preview_error : function(filename, error_code) {		
+		preview_error : function(filename, error_code) {
 		}
-
 	}).on('change', function(){
 	});
+		var whitelist_ext, whitelist_mime;
+		var btn_choose
+		var no_icon
+			btn_choose = "Arrastre aquí la imagen o click para seleccionar";
+			no_icon = "ace-icon fa fa-picture-o";
+			whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];
+			whitelist_mime = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp"];		
+		var file_input = $('#file');
+		file_input
+		.ace_file_input('update_settings',
+		{
+			'btn_choose': btn_choose,
+			'no_icon': no_icon,
+			'allowExt': whitelist_ext,
+			'allowMime': whitelist_mime
+		})
+		file_input.ace_file_input('reset_input');
+		file_input
+		.off('file.error.ace')
+		.on('file.error.ace', function(e, info) {
+		});
+}
+function mensajeSuccess(mensaje) {
+    alertify.success(mensaje);
+}
+function mensajeError(mensaje) {
+    alertify.error(mensaje);
 }
 </script>
+<script type="text/javascript">
+			jQuery(function($) {
+				if(!ace.vars['touch']) {
+					$('.chosen-select').chosen({allow_single_deselect:true});
+					//resize the chosen on window resize
+
+					$(window)
+					.off('resize.chosen')
+					.on('resize.chosen', function() {
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					}).trigger('resize.chosen');
+					//resize chosen on sidebar collapse/expand
+					$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+						if(event_name != 'sidebar_collapsed') return;
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					});
+
+
+					$('#chosen-multiple-style .btn').on('click', function(e){
+						var target = $(this).find('input[type=radio]');
+						var which = parseInt(target.val());
+						if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+						 else $('#form-field-select-4').removeClass('tag-input-style');
+					});
+				}
+				$('[data-rel=tooltip]').tooltip({container:'body'});
+				$('[data-rel=popover]').popover({container:'body'});
+
+				autosize($('textarea[class*=autosize]'));
+				
+
+			});
+		</script>

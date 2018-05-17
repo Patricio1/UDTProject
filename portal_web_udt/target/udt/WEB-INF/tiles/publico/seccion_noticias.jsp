@@ -24,7 +24,7 @@
 		  			var url_noticia="noticia?n="+referencia.id;
 		  			if(indice>0)
 		  			{
-			  			if(referencia.imagen=='sinimagen')
+			  			if(referencia.imagen=='no-image')
 			  				{
 			  				item_noticia="<div class='single-article clearfix'><div class='article-content'><h3 class='entry-title'><a href='"+url_noticia+"' title='"+referencia.titulo+"'>"+referencia.titulo+"</a></h3><div class='below-entry-meta'><span class='posted-on'><i class='fa fa-calendar-o'></i><time style='font-size:11px' class='entry-date published' datetime='"+referencia.contenido+"'>"+referencia.contenido+"</time></span><span class='comments'><i class='fa fa-newspaper-o'></i></span></div></div></div>";
 			  				}
@@ -58,7 +58,7 @@
 		  							  				  				 		  				
 		  			var noticia;
 		  			var url_noticia="noticia?n="+data.id;
-		  			if(data.imagen=='sinimagen')
+		  			if(data.imagen=='no-image')
 		  				{
 		  				noticia="<div class='single-article clearfix'><div class='article-content'><h3 class='entry-title'><a href='"+url_noticia+"' title='"+data.titulo+"'>"+data.titulo+"</a></h3><div class='below-entry-meta'><span class='posted-on'><i class='fa fa-calendar-o'></i><time class='entry-date published' datetime='"+data._fecha+"'>"+data._fecha+"</time></span><span class='comments'><i class='fa fa-newspaper-o'></i></span></div><div class='entry-content'><p style='text-align:justify'>"+data.contenido+"</p></div></div></div>";
 		  				}

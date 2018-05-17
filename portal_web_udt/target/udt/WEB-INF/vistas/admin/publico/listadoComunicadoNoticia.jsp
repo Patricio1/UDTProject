@@ -21,15 +21,6 @@
 							</li>
 							<li class="active">Panel de Administración</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -77,7 +68,6 @@ role="button">Agregar Comunicado/Noticia <span class="fa fa-plus"></span> </a>
         <th>Título</th>
         <th>Tipo</th>
         <th>Fecha Publicación</th>
-        <th>Imagen</th>
         <th>Estado</th>       
         <th><i class="fa fa-cog" aria-hidden="true"></i></th>             
     </tr>
@@ -98,12 +88,6 @@ role="button">Agregar Comunicado/Noticia <span class="fa fa-plus"></span> </a>
 				
 				</td>
 				<td><c:out value="${comserv.fecha}" /></td>
-				<td>
-				<c:if test="${comserv.imagen!='no-image'}">
-					<img src="${comserv.imagen}" width="50" height="50"/>
-				</c:if>
-				
-				</td>
 				<td>
 					 <c:choose>
 					  <c:when test="${comserv.estado}">

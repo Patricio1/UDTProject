@@ -154,11 +154,7 @@
 	</definition>
 	<definition name="form-directorioc" extends="definicion.admin">
 		<put-attribute name="title" value="Directorio Cooperativas" />
-		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formRegisterDC.jsp" />
-	</definition>
-	<definition name="form-directoriocu" extends="definicion.admin">
-		<put-attribute name="title" value="Directorio Cooperativas" />
-		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formUpdateDC.jsp" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formDirectorioCoop.jsp" />
 	</definition>
 	<definition name="listado-area-transferencia" extends="definicion.admin">
 		<put-attribute name="title" value="Área Transferencia" />
@@ -191,5 +187,34 @@
 	<definition name="form-tarifa-transporte" extends="definicion.admin">
 		<put-attribute name="title" value="Tarifas de Transporte" />
 		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formTarifa.jsp" />
+	</definition>
+	<definition name="listado-links-interes" extends="definicion.admin">
+		<put-attribute name="title" value="Links de interés" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/listadoLinksInteres.jsp" />
+	</definition>
+	<definition name="form-link-interes" extends="definicion.admin">
+		<put-attribute name="title" value="Links de interés" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/formLink.jsp" />
+	</definition>
+	
+	<!-- La definición del layout login -->
+	<definition name="definicion.login" template="/WEB-INF/tiles/admin/layoutLogin.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="cuerpo" value="" />
+	</definition>
+
+	<definition name="login" extends="definicion.login">
+		<put-attribute name="title" value="Inicio de sesión" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/login.jsp" />
+	</definition>
+	<definition name="perfil-usuario" extends="definicion.admin">
+		<put-attribute name="title" value="Mi perfil" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/perfilUsuario.jsp" />
+	</definition>
+	
+	<!-- La definición principal del layout para pagina no autorizada-->
+	<definition name="no-autorizado" extends="definicion.admin">
+		<put-attribute name="title" value="No autorizado | UDT" />
+		<put-attribute name="cuerpo" value="/WEB-INF/vistas/admin/publico/noAutorizado.jsp" />
 	</definition>
 </tiles-definitions>

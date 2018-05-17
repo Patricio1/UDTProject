@@ -137,10 +137,10 @@
                  <ul id="scroller">
                  <c:forEach items="${cooperativas}" var="coop">				     
 				     <c:choose>
-					  <c:when test="${coop.logo!='sinlogo'}">
+					  <c:when test="${coop.logo!='no-logo'}">
 					  
 					  <c:choose>
-					  <c:when test="${coop.website!='sinwebsite'}">
+					  <c:when test="${coop.website!='no-website'}">
 					   <li ><a href="${coop.website}" target="_blank"><img src="${coop.logo}" width="110" height="110" /></a></li>
 					  </c:when>
 					  <c:otherwise>
@@ -164,7 +164,14 @@
      <c:forEach items="${comunicados}" var="comunicado">
      <div class="clearfix"></div>
       <a href="<%=request.getContextPath()%>/comunicado?c=${comunicado.id}">
-         		<section id="comunicado" class="widget widget_featured_posts widget_featured_meta clearfix">      <h3 class="widget-title" style="border-bottom-color:#dd5a5a;"><span style="background-color:#dd5a5a;">COMUNICADO</span></h3>                                                                                                                        
+     <c:choose>
+      <c:when test="${comunicado.imagen!='no-image'}">
+      <img src="${comunicado.imagen}" alt="${comunicado.titulo}" />
+	  </c:when>
+	  <c:otherwise>
+	  <section id="comunicado" class="widget widget_featured_posts widget_featured_meta clearfix">
+<h3 class="widget-title" style="border-bottom-color:#dd5a5a;"><span style="background-color:#dd5a5a;">
+COMUNICADO</span></h3>                                                                                                                        
           			<div class="widget widget_featured_posts widget_featured_posts_vertical widget_featured_meta clearfix">                                             
                        <div class="single-article clearfix">   
            					<h5 style="text-align: center;margin-top: 5px">${comunicado.titulo}</h5>
@@ -174,6 +181,8 @@
            				</div>
                     </div>             
             </section> 
+	  </c:otherwise>  
+	  </c:choose>  		
       </a>							 																
 	</c:forEach>
      <!-- Fin seccion comunicados -->       

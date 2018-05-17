@@ -75,7 +75,6 @@ current-menu-item = para marcar opcion actual de menu
 	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-196" id="servicios"><a style="width: 100%;" href="<%=request.getContextPath()%>/servicios">Servicios</a></li>
 	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193" id="preguntas-frecuentes"><a style="width: 100%;" href="<%=request.getContextPath()%>/preguntas-frecuentes">Preguntas frecuentes</a></li>
    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193" id="directorio-cooperativas"><a style="width: 100%;" href="<%=request.getContextPath()%>/directorio-cooperativas">Directorio de cooperativas</a></li>
-      <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193" id="rutas"><a style="width: 100%;" href="<%=request.getContextPath()%>/rutas">Rutas</a></li>
       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194" id="cooperativas"><a style="width: 100%;" href="<%=request.getContextPath()%>/cooperativas">Horario Cooperativas</a></li>
             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194" id="glosario"><a style="width: 100%;" href="<%=request.getContextPath()%>/tarifas-transporte">Tarifas transporte</a></li>  
 </ul>

@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import uta.gad.udt.models.entity.AgruparHorario;
 import uta.gad.udt.models.entity.ComunicadoNoticia;
@@ -39,10 +40,13 @@ public class Pruebas {
 	static ArrayList<String> listaidDias = new ArrayList<String>();
 	
 	public static void main(String[] args) {
-		try{
+		
 			
-		        
-		PublicoServiceImpl servicio= new PublicoServiceImpl();
+			String password = "123";
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            System.out.println(passwordEncoder.encode(password));
+            System.out.println("hola");    
+		
 	/**	BigDecimal lat = new BigDecimal(-12.455);
 		BigDecimal lon = new BigDecimal(-34.88912);
 		Institucion institucion = new Institucion
@@ -67,18 +71,7 @@ public class Pruebas {
 		link.setUrl("su");*/
 	//	servicio.addLink(link);
 		
-		ArrayList<ComunicadoNoticia> inst = (ArrayList<ComunicadoNoticia>) servicio.getUltimas4Noticias();
-		//System.out.print(inst.getNombre()+" "+inst.getCorreoAdmin());
-		//	System.out.print("hola mundo");
-		}catch(Exception ex)
-		{
-			System.err.print(ex.getMessage()+" "+ex.getLocalizedMessage());
-		}
 		
-		//lista para almacenar los dias en formato xxxxxxx donde x=0 o x=1
-		ArrayList<String> listaDias = new ArrayList<String>();
-	    
-		Long numeroAnden;
 		// 
 		//  
 		/**HorarioCooperativaPorDestino horarioCoop = new 

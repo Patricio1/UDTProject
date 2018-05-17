@@ -133,6 +133,7 @@ public class RestControlador {
 	        int mes = month;
 			int dia = dayOfMonth;
 			int diasemana = dayOfWeek-1;
+			System.out.println("OYE: "+diasemana);
 			
 		HashMap<Integer,String> nombreMeses = new HashMap<Integer, String>();
 		nombreMeses.put(1,"Enero");nombreMeses.put(2,"Febrero");nombreMeses.put(3,"Marzo");
@@ -140,9 +141,9 @@ public class RestControlador {
 		nombreMeses.put(7,"Julio");nombreMeses.put(8,"Agosto");nombreMeses.put(9,"Septiembre");
 		nombreMeses.put(10,"Octubre");nombreMeses.put(11,"Noviembre");nombreMeses.put(12,"Diciembre");
 		HashMap<Integer,String> diasSemana = new HashMap<Integer, String>();
-		diasSemana.put(1,"Lunes");diasSemana.put(2,"Martes");diasSemana.put(3,"Miércoles");
-		diasSemana.put(4,"Jueves");diasSemana.put(5,"Viernes");diasSemana.put(6,"Sábado");
-		diasSemana.put(7,"Domingo");
+		diasSemana.put(0,"Domingo");diasSemana.put(1,"Lunes");diasSemana.put(2,"Martes");
+		diasSemana.put(3,"Miércoles");diasSemana.put(4,"Jueves");diasSemana.put(5,"Viernes");
+		diasSemana.put(6,"Sábado");
 	   String fecha = diasSemana.get(diasemana)+", "+dia+" de "+nombreMeses.get(mes)+" de "+year;
 	   return fecha;
 	}

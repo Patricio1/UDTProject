@@ -15,8 +15,8 @@ public class ServicioFormValidator implements Validator{
 	}
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "required.nombre","Nombre es requerido!");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descripcion", "required.descripcion","Descripción es requerido!");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "imgOpcion", "required.imgOpcion","Escoja una opción!");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "errors.empty.servicio.nombre");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descripcion", "errors.empty.servicio.descripcion");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "imgOpcion","errors.empty.servicio.imgOpcion");
 	}
 }

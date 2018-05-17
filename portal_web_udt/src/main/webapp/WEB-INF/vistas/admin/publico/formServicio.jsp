@@ -18,15 +18,6 @@
 							</li>
 							<li class="active">Panel de Administración</li>
 						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -48,7 +39,7 @@
 							
 								<div class="row">
 
-								<div class="col-sm-10">
+								<div class="col-sm-12">
 											<div class="widget-box">
 												<div class="widget-header">
 													<h4 class="widget-title">Servicios de la Institución</h4>
@@ -156,8 +147,11 @@ Guardar
 <script>
 $(document).ready(function(){
 	$('#oServicios').attr('class','active');
-	$('#oPublico').attr('class','open');
-    $('#imagen').hide();
+	$('#oPublico').attr('class','open');	
+	$('#nombre').prop('required',true);
+	$('#descripcion').prop('required',true);
+	$('#imgOpcion1').prop('required',true);
+    //$('#imagen').hide();
     setImageOption();
     initInputFileCustom();
 
@@ -228,17 +222,37 @@ function initInputFileCustom()
 {
 	$('#file').ace_file_input({
 		style: 'well',
-		btn_choose: 'Arrastre aquí la imagen o click para seleccionar',
+		btn_choose: 'Drop files here or click to choose',
 		btn_change: null,
 		no_icon: 'ace-icon fa fa-cloud-upload',
 		droppable: true,
 		thumbnail: 'small'//large | fit
 		,
-		preview_error : function(filename, error_code) {		
+		preview_error : function(filename, error_code) {
 		}
-
 	}).on('change', function(){
 	});
+		var whitelist_ext, whitelist_mime;
+		var btn_choose
+		var no_icon
+			btn_choose = "Arrastre aquí la imagen o click para seleccionar";
+			no_icon = "ace-icon fa fa-picture-o";
+			whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];
+			whitelist_mime = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp"];		
+		var file_input = $('#file');
+		file_input
+		.ace_file_input('update_settings',
+		{
+			'btn_choose': btn_choose,
+			'no_icon': no_icon,
+			'allowExt': whitelist_ext,
+			'allowMime': whitelist_mime
+		})
+		file_input.ace_file_input('reset_input');
+		file_input
+		.off('file.error.ace')
+		.on('file.error.ace', function(e, info) {
+		});
 }
 function mensajeSuccess(mensaje) {
     alertify.success(mensaje);

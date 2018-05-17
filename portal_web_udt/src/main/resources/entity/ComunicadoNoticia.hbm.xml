@@ -23,25 +23,28 @@
         <property name="estado" type="java.lang.Boolean">
             <column name="ESTADO" />
         </property>
-        <property name="imagen" type="string">
-            <column name="IMAGEN" length="100" />
-        </property>
     </class>
     <sql-query name="listarComunicadoNoticia">
-	<return class="uta.gad.udt.models.entity.ComunicadoNoticia"/>
+    <return-scalar  column="id" type="java.lang.Integer"/> 
+    <return-scalar  column="titulo" type="java.lang.String"/>
+    <return-scalar  column="contenido" type="java.lang.String"/>
+    <return-scalar  column="tipo" type="char"/> 
+    <return-scalar  column="fecha" type="date"/>
+    <return-scalar  column="estado" type="java.lang.Boolean"/>
+    <return-scalar  column="imagen" type="java.lang.String"/>
 	<![CDATA[EXEC portal.GET_COMUNICADO_NOTICIA]]>
     </sql-query> 
     <sql-query name="listarComunicados" >
     <return-scalar  column="id" type="java.lang.Integer"/>                
     <return-scalar  column="titulo" type="java.lang.String"/>
-	<return-scalar  column="fecha" type="date" />	 
+	<return-scalar  column="fecha" type="date" />
+	<return-scalar  column="imagen" type="java.lang.String"/>
 	<![CDATA[EXEC portal.LISTAR_COMUNICADOS]]>
     </sql-query>
     <sql-query name="getComunicadoNoticiaPorId" >                       
     <return-scalar  column="titulo" type="java.lang.String"/>
     <return-scalar  column="contenido" type="java.lang.String"/>    
 	<return-scalar  column="fecha" type="date" />
-	<return-scalar  column="imagen" type="java.lang.String"/>	 
 	<![CDATA[EXEC portal.GET_COMUNICADO_NOTICIA_POR_ID :TIPO,:ID]]>
     </sql-query>
     <sql-query name="getUltimas4Noticias" >                       

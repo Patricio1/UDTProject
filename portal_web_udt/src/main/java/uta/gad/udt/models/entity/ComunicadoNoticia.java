@@ -1,6 +1,5 @@
 package uta.gad.udt.models.entity;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,14 +21,6 @@ public class ComunicadoNoticia implements java.io.Serializable {
 	private Boolean estado;
 	private String imagen;
 	private String _fecha;
-	private String imgOpcion;
-
-	public String getImgOpcion() {
-		return imgOpcion;
-	}
-	public void setImgOpcion(String imgOpcion) {
-		this.imgOpcion = imgOpcion;
-	}
 	public ComunicadoNoticia() {
 	}
 	public ComunicadoNoticia(String titulo,Date fecha) {

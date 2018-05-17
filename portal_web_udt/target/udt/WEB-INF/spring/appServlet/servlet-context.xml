@@ -21,7 +21,7 @@
 	
     
 	
- <context:property-placeholder location="classpath:validation.properties" />	
+
  
 	<!-- Controla las peticiones HTTP GET /recursos/** para los recursos estáticos 
 		(ej: imagenes), estos se almacenan en el directorio ${webappRoot}/mis-recursos -->
@@ -32,6 +32,7 @@
 		
 	<!-- La url /home.html inmediatamente esta mapeada hacia la vista home.jsp -->
 	<mvc:view-controller path="inicio" view-name="inicio" />
+	
 	
     <!-- Para resolver vistas Tiles -->
 	<bean id="viewResolver"
@@ -61,5 +62,37 @@
 	<bean id="multipartResolver"   
 class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
+	<bean id="messageSource"
+class="org.springframework.context.support.ResourceBundleMessageSource">
+<property name="basename"
+value="uta/gad/udt/validator/errors"/>
+</bean>
+
+<context:property-placeholder location="WEB-INF/spring/appServlet/config.properties"/>
+<!-- Spring Email Sender Bean Configuration -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        <property name="javaMailProperties">
+            <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+    
 	
+    
+<mvc:annotation-driven conversion-service="conversionService"/> 
+<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <property name="converters">
+        <list>
+            <bean id="roleToUserProfile" class="uta.gad.udt.models.dao.RoleToUserProfileConverter" />
+        </list>
+    </property>
+</bean>
+
 </beans>

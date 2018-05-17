@@ -3,6 +3,8 @@ package uta.gad.udt.models.dao;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,6 +14,8 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+
+
 
 
 
@@ -245,17 +249,22 @@ public class PublicoDAOImpl implements PublicoDAO{
    	public List<ComunicadoNoticia> listarComunicados() {   	    		    
             Session session = HibernateUtil.getSessionFactory().openSession();
             List<ComunicadoNoticia> result = session.getNamedQuery("listarComunicados").setResultTransformer(Transformers.aliasToBean(ComunicadoNoticia.class)).list();                           	  
-           
-          /**  for (ComunicadoNoticia cm : result) {
-				ImageExtractor im = new ImageExtractor();
-				try {
-					logger.debug("IMAGEN: "+im.extractImageUrl(cm.getContenido()));
-				
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}*/
+            for (ComunicadoNoticia comunicadoNoticia : result) {
+        		if(!comunicadoNoticia.getImagen().trim().equals("no-image"))
+        		{
+        			try {
+        				Pattern p = Pattern.compile("src=\"(.*?)\"");
+        				    Matcher m = p.matcher(comunicadoNoticia.getImagen());
+        				    if (m.find()) {
+        				    	comunicadoNoticia.setImagen(m.group(1));
+        				    	}
+        			} catch (Exception e) {
+        				// TODO Auto-generated catch block
+        				e.printStackTrace();
+        			}
+        		}
+               }
+        
             session.close();
             return result;                                   	       	               
       	}
@@ -341,6 +350,21 @@ public class PublicoDAOImpl implements PublicoDAO{
     public List<ComunicadoNoticia> getTitularesNoticias(){    		      	
             Session session = HibernateUtil.getSessionFactory().openSession();
             List<ComunicadoNoticia> result = session.getNamedQuery("getTitularesNoticias").setResultTransformer(Transformers.aliasToBean(ComunicadoNoticia.class)).list();                           	  
+            for (ComunicadoNoticia comunicadoNoticia : result) {
+        		if(!comunicadoNoticia.getImagen().trim().equals("no-image"))
+        		{
+        			try {
+        				Pattern p = Pattern.compile("src=\"(.*?)\"");
+        				    Matcher m = p.matcher(comunicadoNoticia.getImagen());
+        				    if (m.find()) {
+        				    	comunicadoNoticia.setImagen(m.group(1));
+        				    	}
+        			} catch (Exception e) {
+        				// TODO Auto-generated catch block
+        				e.printStackTrace();
+        			}
+        		}
+               }
             session.close();
             return result;                                   	       	               
       	}
@@ -354,6 +378,14 @@ public class PublicoDAOImpl implements PublicoDAO{
             try
         	{
             	noticia = result.get(0);
+            	try {
+    				Pattern p = Pattern.compile("src=\"(.*?)\"");
+    				    Matcher m = p.matcher(noticia.getImagen());
+    				    if (m.find()) {
+    				    	noticia.setImagen(m.group(1));
+    				    	}
+    			} catch (Exception e) {
+    			}
         	}catch(java.lang.IndexOutOfBoundsException ex)
         	{
         		noticia = null;

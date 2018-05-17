@@ -4,20 +4,22 @@ import java.util.List;
 
 import uta.gad.udt.models.entity.AreaTransferencia;
 import uta.gad.udt.models.entity.ComunicadoNoticia;
+import uta.gad.udt.models.entity.ConfigMail;
 import uta.gad.udt.models.entity.CooperativaConProximasSalidas;
 import uta.gad.udt.models.entity.DestinosFrecuencia;
 import uta.gad.udt.models.entity.DetalleCooperativa;
 import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.Link;
+import uta.gad.udt.models.entity.Perfil;
 import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
 import uta.gad.udt.models.entity.TarifaTransporte;
 import uta.gad.udt.models.entity.TramiteTransportista;
+import uta.gad.udt.models.entity.Usuario;
 
 public interface AdministracionDAO {
-	public void updateInstitucion(Institucion institucion);
-	public void addLink(Link link);
+	public int updateInstitucion(Institucion institucion);
 	public Institucion getInfoInstitucion();
 	
 	//public int addServicio(Servicio servicio);
@@ -62,4 +64,17 @@ public interface AdministracionDAO {
 	public int saveTarifaTransporte(TarifaTransporte tarifaTransporte);
 	public int deleteTarifaTransporte(TarifaTransporte tarifaTransporte);
 	public List<DestinosFrecuencia> getNombresDestinos();
+	
+	public int updateConfigMail(ConfigMail configmail);
+	
+	public Link getLinkInteresById(short id);
+	public int saveLinkInteres(Link linkInteres);
+	public int deleteLinkInteres(Link linkInteres);
+	
+	public Usuario getUsuarioById(long id);
+	public Usuario getUsuarioByUserName(String username);
+	public int saveUsuario(Usuario usuario);
+	
+	public Perfil getPerfilById(long id);
+	
 }

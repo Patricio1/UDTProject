@@ -1,14 +1,20 @@
 package uta.gad.udt.models.dao;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.engine.jdbc.spi.ExtractedDatabaseMetaData;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +22,19 @@ import org.springframework.stereotype.Repository;
 
 import uta.gad.udt.models.entity.AreaTransferencia;
 import uta.gad.udt.models.entity.ComunicadoNoticia;
+import uta.gad.udt.models.entity.ConfigMail;
 import uta.gad.udt.models.entity.CooperativaConProximasSalidas;
 import uta.gad.udt.models.entity.DestinosFrecuencia;
 import uta.gad.udt.models.entity.DetalleCooperativa;
 import uta.gad.udt.models.entity.Institucion;
 import uta.gad.udt.models.entity.Link;
+import uta.gad.udt.models.entity.Perfil;
 import uta.gad.udt.models.entity.PreguntaFrecuente;
 import uta.gad.udt.models.entity.Recurso;
 import uta.gad.udt.models.entity.Servicio;
 import uta.gad.udt.models.entity.TarifaTransporte;
 import uta.gad.udt.models.entity.TramiteTransportista;
+import uta.gad.udt.models.entity.Usuario;
 @Repository
 public class AdministracionDAOImpl implements AdministracionDAO{
 	private static final Logger logger = LoggerFactory.getLogger(AdministracionDAOImpl.class);
@@ -50,51 +59,13 @@ public class AdministracionDAOImpl implements AdministracionDAO{
         return institucion; 
 	}
 	@Override
-    public void updateInstitucion(Institucion institucion)
+    public int updateInstitucion(Institucion institucion)
     {
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = session.getTransaction();
-   	 	tx.begin();
-   	 	session.update(institucion);
-   	 	tx.commit();
-		session.close();
+		return CRUDGeneric(institucion,"s");
     }
 
-   	@Override
-    public void addLink(Link link)
-    {
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-    	Transaction tx = session.getTransaction();
-    	 tx.begin();
-		session.saveOrUpdate(link);
-		tx.commit();
-		session.close();
-		logger.info("Link add ok, Link Details="+link);
-		
-    }
-	/**@Override
-	public int addServicio(Servicio servicio) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-	    int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.save(servicio);
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;
-	}*/
 	@Override
 	public int saveServicio(Servicio servicio) {
-		/**Session session = HibernateUtil.getSessionFactory().openSession();
-	    int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.saveOrUpdate(servicio);
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;*/
 		return CRUDGeneric(servicio,"s");
 	}
 	@SuppressWarnings("unchecked")
@@ -110,34 +81,9 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 	@Override
 	public int deleteServicio(Servicio servicio)
     {
-    	/**Session session = HibernateUtil.getSessionFactory().openSession();
-        int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.delete(servicio);
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;*/
-		return CRUDGeneric(servicio,"d");
-		
+		return CRUDGeneric(servicio,"d");	
     }
 	
-	/**@Override
-	public int updateServicio(Servicio servicio)
-    {
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-        int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.update(servicio);
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;
-		
-		
-    }*/
 	@Override
 	public Servicio getServicio(short idServicio)
     {
@@ -148,28 +94,22 @@ public class AdministracionDAOImpl implements AdministracionDAO{
     	servicio = (Servicio)session.get(Servicio.class,idServicio);
 		tx.commit();
 		session.close();
-		return servicio;
-		
+		return servicio;	
     }
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ComunicadoNoticia> getComunicadoNoticia() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-        Query callStoredProcedure = session.getNamedQuery("listarComunicadoNoticia");	
-    	List<ComunicadoNoticia> results= (List<ComunicadoNoticia>)callStoredProcedure.list();	    
- 
+		List<ComunicadoNoticia> results= session.getNamedQuery("listarComunicadoNoticia").setResultTransformer(Transformers.aliasToBean(ComunicadoNoticia.class)).list();    
     	for (ComunicadoNoticia comunicadoNoticia : results) {
 		if(!comunicadoNoticia.getImagen().trim().equals("no-image"))
 		{
 			try {
-				//logger.debug("jajajaja: "+img.extractImageUrl(comunicadoNoticia.getImagen()));
-				 Pattern p = Pattern.compile("src=\"(.*?)\"");
+				Pattern p = Pattern.compile("src=\"(.*?)\"");
 				    Matcher m = p.matcher(comunicadoNoticia.getImagen());
 				    if (m.find()) {
-				    	logger.debug("jajajaja: "+m.group(1));
 				    	comunicadoNoticia.setImagen(m.group(1));
-				    	// prints http://www.01net.com/images/article/mea/150.100.790233.jpg
-				    }
+				    	}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -193,30 +133,11 @@ public class AdministracionDAOImpl implements AdministracionDAO{
     }
 	@Override
 	public int saveComunicadoNoticia(ComunicadoNoticia comunicadoNoticia) {
-		/**Session session = HibernateUtil.getSessionFactory().openSession();
-	    int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.saveOrUpdate(comunicadoNoticia);
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;*/
 		return CRUDGeneric(comunicadoNoticia,"s");
 	}
 	@Override
 	public int deleteComunicadoNoticia(ComunicadoNoticia comunicadoNoticia)
     {
-    	/**Session session = HibernateUtil.getSessionFactory().openSession();
-        int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.delete(comunicadoNoticia);
-    	
-		resultado = 1;
-		tx.commit();
-		session.close();
-		return resultado;	*/	
 		return CRUDGeneric(comunicadoNoticia,"d");
     }
 	
@@ -245,27 +166,11 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 	@Override
 	public int saveRecurso(Recurso recurso)
 	{
-		/**Session session = HibernateUtil.getSessionFactory().openSession();
-	    int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.saveOrUpdate(recurso);
-		resultado = 1;
-		tx.commit();
-		session.close();*/
 		return CRUDGeneric(recurso,"s");
 	}
 	@Override
 	public int deleteRecurso(Recurso recurso)
 	{
-	/**	Session session = HibernateUtil.getSessionFactory().openSession();
-        int resultado = 0;
-    	Transaction tx = session.getTransaction();
-    	tx.begin();
-		session.delete(recurso);
-		resultado = 1;
-		tx.commit();
-		session.close();*/
 		return CRUDGeneric(recurso,"d");	
 	}
 	public int CRUDGeneric(Object object,String crudOperacion)
@@ -283,8 +188,7 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 			break;
 		default:
 			break;
-		}
-		
+		}	
 		resultado = 1;
 		tx.commit();
 		session.close();
@@ -405,6 +309,7 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 	{
 		return CRUDGeneric(preguntaFrecuente,"d");	
 	}
+	@Override
 	public TarifaTransporte getTarifaTransporteById(int id)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -416,10 +321,12 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 		session.close();
 		return tarifaTransporte;
 	}
+	@Override
 	public int saveTarifaTransporte(TarifaTransporte tarifaTransporte)
 	{
 		return CRUDGeneric(tarifaTransporte,"s");
 	}
+	@Override
 	public int deleteTarifaTransporte(TarifaTransporte tarifaTransporte)
 	{
 		return CRUDGeneric(tarifaTransporte,"d");
@@ -432,6 +339,131 @@ public class AdministracionDAOImpl implements AdministracionDAO{
 			List<DestinosFrecuencia> results = session.getNamedQuery("getNombresDestinos").setResultTransformer(Transformers.aliasToBean(DestinosFrecuencia.class)).list();	   
 	        session.close();
 	        return results;
+	}
+	@Override
+	public int updateConfigMail(ConfigMail configmail)
+	{
+		Properties prop = new Properties();
+		OutputStream output = null;
+		int resultado = 0;
+
+		try {
+
+			output = new FileOutputStream("config.properties");
+
+			// set the properties value
+			prop.setProperty("host", configmail.getHost());
+			prop.setProperty("port", configmail.getPort());
+			prop.setProperty("username", configmail.getUsername());
+			prop.setProperty("password", configmail.getPassword());
+System.out.print("PENDEJO :)");
+			// save properties to project root folder
+			prop.store(output, null);
+			resultado = 1;
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return resultado;
+	}
+	@Override
+	public Link getLinkInteresById(short id)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Link linkInteres = null;
+    	Transaction tx = session.getTransaction();
+    	tx.begin();
+    	linkInteres = (Link)session.get(Link.class,id);
+		tx.commit();
+		session.close();
+		return linkInteres;
+	}
+	@Override
+	public int saveLinkInteres(Link linkInteres)
+	{
+		return CRUDGeneric(linkInteres,"s");
+	}
+	@Override
+	public int deleteLinkInteres(Link linkInteres)
+	{
+		return CRUDGeneric(linkInteres,"d");
+	}
+	@Override
+	public Usuario getUsuarioById(long id)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Usuario usuario = null;
+    	Transaction tx = session.getTransaction();
+    	tx.begin();
+    	usuario = (Usuario)session.get(Usuario.class,id);
+		tx.commit();
+		session.close();
+		logger.debug("USUARIO: "+usuario.getIdUsuario()+" "+usuario.getCiRuc()+
+				" "+usuario.getNombre()+" "+usuario.getUsuario()+" "+
+				usuario.getClave()+" "+usuario.getEstado()+" "+
+				usuario.getPerfil().getIdPerfil()+" "+usuario.getFechaActivo()+" "+
+				usuario.isActivo()+" "+usuario.getModuloDefecto()+
+				" nombre perfil: "+usuario.getPerfil().getNombre());
+		return usuario;
+	}
+	@Override
+	public Perfil getPerfilById(long id)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Perfil perfil = null;
+    	Transaction tx = session.getTransaction();
+    	tx.begin();
+    	perfil = (Perfil)session.get(Perfil.class,id);
+		tx.commit();
+		session.close();
+		logger.debug("PERFIL: "+perfil.getIdPerfil()+" "+
+				perfil.getNombre()+" "+perfil.getDescripcion());
+		return perfil;
+	}
+	@Override
+	public Usuario getUsuarioByUserName(String username)
+	{
+		//Criteria hibernate (used here)
+		//https://examples.javacodegeeks.com/enterprise-java/hibernate/retrieve-record-in-hibernate-with-criteria/	
+	        Session session=null;
+	        Usuario usuario = null;
+	        try {
+	        	session = HibernateUtil.getSessionFactory().openSession();	    		
+	        	Transaction tx = session.getTransaction();
+	        	tx.begin();	        	
+				Criteria criteria = session.createCriteria(Usuario.class);
+				criteria.add(Restrictions.eq("usuario", username));				
+				usuario = (Usuario) criteria.uniqueResult();				
+				if (usuario!=null) {
+					System.out.println("USUARIO found:");
+					logger.debug("USUARIO: "+usuario.getIdUsuario()+" "+usuario.getCiRuc()+
+		    				" "+usuario.getNombre()+" "+usuario.getUsuario()+" "+
+		    				usuario.getClave()+" "+usuario.getEstado()+" "+
+		    				usuario.getPerfil().getIdPerfil()+" "+usuario.getFechaActivo()+" "+
+		    				usuario.isActivo()+" "+usuario.getModuloDefecto()+" nombre perfil: "+usuario.getPerfil().getNombre());		        		
+				}			
+				tx.commit();
+				session.close();
+			}
+			catch (HibernateException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+			}			
+		return usuario;
+	}
+	@Override
+	public int saveUsuario(Usuario usuario)
+	{
+		return CRUDGeneric(usuario,"s");
 	}
 	
 }

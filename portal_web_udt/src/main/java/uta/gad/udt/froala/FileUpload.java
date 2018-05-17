@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.ArrayUtils;
 
+
 import com.google.gson.Gson;
 @WebServlet(name = "FileUploadServlet", urlPatterns = {
 	    "/upload_file"
@@ -85,7 +86,7 @@ public class FileUpload extends HttpServlet {
             String appName =request.getContextPath();
             String urlbase = protocol+"://"+nombreServidor+":"+puerto+appName+"/";
             linkName = urlbase + "files/" + name;
- 
+         
             // Validate file.
             String mimeType = filePart.getContentType();
             String[] allowedExts = new String[] {
@@ -117,9 +118,11 @@ public class FileUpload extends HttpServlet {
             File file = new File(uploads, name);
  
             try (InputStream input = filePart.getInputStream()) {
-                Files.copy(input, file.toPath());
+            	
+            	Files.copy(input, file.toPath());
+            
             }catch (Exception e) {
-            	writer.println("<br/> ERROR: " + e);
+            	System.out.print("ERROR: "+e.getMessage());
             }
  
         } catch (Exception e) {
